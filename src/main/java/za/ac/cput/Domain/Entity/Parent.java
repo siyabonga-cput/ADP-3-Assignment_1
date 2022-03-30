@@ -7,7 +7,7 @@ Date: 28 March 2022
 package za.ac.cput.Domain.Entity;
 
 public class Parent {
-    private int parentID;
+    private String parentID;
     private int studentID;
     private String parName;
     private String parSurname;
@@ -27,11 +27,11 @@ public class Parent {
 
     //====================================================
     //Getters and Setters
-    public int getParentID() {
+    public String getParentID() {
         return parentID;
     }
 
-    public void setParentID(int parentID) {
+    public void setParentID(String parentID) {
         this.parentID = parentID;
     }
 
@@ -92,14 +92,14 @@ public class Parent {
     //====================================================
     // Builder Pattern
     public static class Builder {
-        private int parentID;
+        private String parentID;
         private int studentID;
         private String parName;
         private String parSurname;
         private String cellNumber;
         private String email;
 
-        public Builder setParentID(int parentID) {
+        public Builder setParentID(String parentID) {
             this.parentID = parentID;
             return this;
         }
