@@ -1,6 +1,9 @@
-/*
+/* Transport.java
+   Entity for the Transport
+   Author: Raeesah Williams (219091498)
+   Date: 30 March 2022
+*/
 
- */
 package za.ac.cput.Domain.Entity;
 
 public class Transport

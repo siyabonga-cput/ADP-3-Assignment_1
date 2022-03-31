@@ -1,6 +1,8 @@
-/*
-
- */
+/* SubjectDepartment.java
+   Entity for the Subject Department
+   Author: Raeesah Williams (219091498)
+   Date: 30 March 2022
+*/
 
 package za.ac.cput.Domain.Entity;
 
