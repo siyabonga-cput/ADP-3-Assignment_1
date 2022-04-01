@@ -33,9 +33,7 @@ public class Teacher {
         return teacherID;
     }
 
-    public void setTeacherID(int teacherID) {
-        this.teacherID = teacherID;
-    }
+    public void setTeacherID(int teacherID) { this.teacherID = teacherID; }
 
     public int getAdminID() {
         return adminID;
