@@ -16,6 +16,7 @@ public class SupportStaff {
     private String qualification;
     private String typeOfWork;
 
+    //Private constructor
     private SupportStaff(Builder builder) {
         this.suppStaffID = builder.suppStaffID;
         this.adminID = builder.adminID;

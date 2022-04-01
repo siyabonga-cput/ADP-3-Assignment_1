@@ -12,7 +12,7 @@ public class Fees {
     private int parentID;
     private double amount;
 
-
+    //Private constructor
     private Fees(Builder builder) {
         this.feeID = builder.feeID;
         this.studentID = builder.studentID;
