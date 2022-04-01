@@ -14,4 +14,18 @@ public class Helper {
         return UUID.randomUUID().toString();
     }
     //====================================================
+
+    //Raeesah Williams
+    //SubjectDepartment primary key
+    public static String generateSubDeptID()
+    {
+        return UUID.randomUUID().toString();
+    }
+
+    // Transport primary key
+    public static String generateTransportID()
+    {
+        return UUID.randomUUID().toString();
+    }
+
 }

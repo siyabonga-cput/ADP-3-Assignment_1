@@ -12,9 +12,9 @@ public class SubjectDepartment
     private int subDeptID;
     private int subjectID;
     private int teacherID;
-    private String typeOfTransport;
+    private String typeOfDepartment;
 
-    // getters
+    // getters and setters
     public int getSubDeptID()
     {
         return subDeptID;
@@ -30,9 +30,25 @@ public class SubjectDepartment
         return teacherID;
     }
 
-    public String getTypeOfTransport()
+    public String getTypeOfDepartment()
     {
-        return typeOfTransport;
+        return typeOfDepartment;
+    }
+
+    public void setSubDeptID(int subDeptID) {
+        this.subDeptID = subDeptID;
+    }
+
+    public void setSubjectID(int subjectID) {
+        this.subjectID = subjectID;
+    }
+
+    public void setTeacherID(int teacherID) {
+        this.teacherID = teacherID;
+    }
+
+    public void setTypeOfDepartment(String typeOfDepartment) {
+        this.typeOfDepartment = typeOfDepartment;
     }
 
     // toString
@@ -43,7 +59,7 @@ public class SubjectDepartment
                 "subDeptID=" + subDeptID +
                 ", subjectID=" + subjectID +
                 ", teacherID=" + teacherID +
-                ", typeOfTransport='" + typeOfTransport + '\'' +
+                ", typeOfTransport='" + typeOfDepartment + '\'' +
                 '}';
     }
 
@@ -53,7 +69,7 @@ public class SubjectDepartment
         this.subDeptID = builder.subDeptID;
         this.subjectID = builder.subjectID;
         this.teacherID = builder.teacherID;
-        this.typeOfTransport = builder.typeOfTransport;
+        this.typeOfDepartment = builder.typeOfDepartment;
     }
 
     // builder pattern
@@ -62,7 +78,7 @@ public class SubjectDepartment
         private int subDeptID;
         private int subjectID;
         private int teacherID;
-        private String typeOfTransport;
+        private String typeOfDepartment;
 
         public Builder setSubDeptID(int subDeptID)
         {
@@ -82,9 +98,9 @@ public class SubjectDepartment
             return this;
         }
 
-        public Builder setTypeOfTransport(String typeOfTransport)
+        public Builder setTypeOfDepartment(String typeOfDepartment)
         {
-            this.typeOfTransport = typeOfTransport;
+            this.typeOfDepartment = typeOfDepartment;
             return this;
         }
 
@@ -93,7 +109,7 @@ public class SubjectDepartment
             this.subDeptID = subjectDepartment.getSubDeptID();
             this.subjectID = subjectDepartment.getSubjectID();
             this.teacherID = subjectDepartment.getTeacherID();
-            this.typeOfTransport = subjectDepartment.getTypeOfTransport();
+            this.typeOfDepartment = subjectDepartment.getTypeOfDepartment();
             return this;
         }
 
