@@ -8,7 +8,7 @@ package za.ac.cput.Domain.Entity;
 
 public class Student {
 
-    private int studentID;
+    private String studentID;
     private int parentID;
     private int adminID;
     private String stuName;
@@ -38,11 +38,11 @@ public class Student {
 
     //====================================================
     //Getters and Setters
-    public int getStudentID() {
+    public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 
@@ -148,7 +148,7 @@ public class Student {
     //====================================================
     // Builder Pattern
     public static class Builder {
-        private int studentID;
+        private String studentID;
         private int parentID;
         private int adminID;
         private String stuName;
@@ -160,7 +160,7 @@ public class Student {
         private String importantHealthInfo;
         private double stuAverage;
 
-        public Student.Builder setStudentID(int studentID) {
+        public Student.Builder setStudentID(String studentID) {
             this.studentID = studentID;
             return this;
         }
