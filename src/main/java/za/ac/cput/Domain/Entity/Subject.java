@@ -1,5 +1,5 @@
-/* Teacher.java
-Builder Pattern for Teacher
+/* Subject.java
+Builder Pattern for Subject
 Author: Jayden Johnson (219086796)
 Date: 29 March 2022
 */
@@ -7,9 +7,9 @@ Date: 29 March 2022
 package za.ac.cput.Domain.Entity;
 
 public class Subject {
-    private int subjectID;
-    private int studentID;
-    private int subDeptID;
+    private String subjectID;
+    private String studentID;
+    private String subDeptID;
     private String modules;
     private double subAverage;
     private double stuAverage;
@@ -23,27 +23,27 @@ public class Subject {
         this.stuAverage = builder.stuAverage;
     }
 
-    public int getSubjectID() {
+    public String getSubjectID() {
         return subjectID;
     }
 
-    public void setSubjectID(int subjectID) {
+    public void setSubjectID(String subjectID) {
         this.subjectID = subjectID;
     }
 
-    public int getStudentID() {
+    public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 
-    public int getSubDeptID() {
+    public String getSubDeptID() {
         return subDeptID;
     }
 
-    public void setSubDeptID(int subDeptID) {
+    public void setSubDeptID(String subDeptID) {
         this.subDeptID = subDeptID;
     }
 
@@ -84,24 +84,24 @@ public class Subject {
     }
 
     public static class Builder{
-        private int subjectID;
-        private int studentID;
-        private int subDeptID;
+        private String subjectID;
+        private String studentID;
+        private String subDeptID;
         private String modules;
         private double subAverage;
         private double stuAverage;
 
-        public Builder setSubjectID(int subjectID) {
+        public Builder setSubjectID(String subjectID) {
             this.subjectID = subjectID;
             return this;
         }
 
-        public Builder setStudentID(int studentID) {
+        public Builder setStudentID(String studentID) {
             this.studentID = studentID;
             return this;
         }
 
-        public Builder setSubDeptID(int subDeptID) {
+        public Builder setSubDeptID(String subDeptID) {
             this.subDeptID = subDeptID;
             return this;
         }
