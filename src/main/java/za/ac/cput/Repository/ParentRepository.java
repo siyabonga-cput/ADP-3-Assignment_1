@@ -52,9 +52,9 @@ public class ParentRepository implements IParentRepository {
         if (oldparent != null){
             parentDB.remove(oldparent);
             parentDB.add(parent);
-            return parent;
+            return null;
         }
-        return null;
+        return parent;
     }
     //===========================================
     //Delete
