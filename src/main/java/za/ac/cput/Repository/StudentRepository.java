@@ -18,6 +18,7 @@ public class StudentRepository implements IStudentRepository {
     private StudentRepository() {
         studentDB = new HashSet<Student>();
     }
+
     public static StudentRepository getRepository() {
         if (repository == null) {
             repository = new StudentRepository();
@@ -38,7 +39,7 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public Student read(String studentID) {
         Student student = studentDB.stream()
-                .filter(e-> e.getStudentID().equals(studentID) )
+                .filter(s-> s.getStudentID().equals(studentID) )
                 .findAny()
                 .orElse(null);
         return student;
@@ -51,9 +52,9 @@ public class StudentRepository implements IStudentRepository {
         if(oldStudent != null){
             studentDB.remove(oldStudent);
             studentDB.add(student);
-            return student;
+            return null;
         }
-        return null;
+        return student;
     }
     //===========================================
     //Delete
