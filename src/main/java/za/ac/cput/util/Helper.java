@@ -27,5 +27,12 @@ public class Helper {
     {
         return UUID.randomUUID().toString();
     }
+  
+    // Jyyden Johnson
+    // generating keys
+      public static String generateID() {
+        return UUID.randomUUID().toString();
+    }
 
 }
+
