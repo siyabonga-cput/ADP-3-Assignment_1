@@ -9,23 +9,23 @@ package za.ac.cput.Domain.Entity;
 public class SubjectDepartment
 {
     // constructors
-    private int subDeptID;
-    private int subjectID;
-    private int teacherID;
+    private String subDeptID;
+    private String subjectID;
+    private String teacherID;
     private String typeOfDepartment;
 
     // getters and setters
-    public int getSubDeptID()
+    public String getSubDeptID()
     {
         return subDeptID;
     }
 
-    public int getSubjectID()
+    public String getSubjectID()
     {
         return subjectID;
     }
 
-    public int getTeacherID()
+    public String getTeacherID()
     {
         return teacherID;
     }
@@ -35,15 +35,15 @@ public class SubjectDepartment
         return typeOfDepartment;
     }
 
-    public void setSubDeptID(int subDeptID) {
+    public void setSubDeptID(String subDeptID) {
         this.subDeptID = subDeptID;
     }
 
-    public void setSubjectID(int subjectID) {
+    public void setSubjectID(String subjectID) {
         this.subjectID = subjectID;
     }
 
-    public void setTeacherID(int teacherID) {
+    public void setTeacherID(String teacherID) {
         this.teacherID = teacherID;
     }
 
@@ -75,24 +75,24 @@ public class SubjectDepartment
     // builder pattern
     public static class Builder
     {
-        private int subDeptID;
-        private int subjectID;
-        private int teacherID;
+        private String subDeptID;
+        private String subjectID;
+        private String teacherID;
         private String typeOfDepartment;
 
-        public Builder setSubDeptID(int subDeptID)
+        public Builder setSubDeptID(String subDeptID)
         {
             this.subDeptID = subDeptID;
             return this;
         }
 
-        public Builder setSubjectID(int subjectID)
+        public Builder setSubjectID(String subjectID)
         {
             this.subjectID = subjectID;
             return this;
         }
 
-        public Builder setTeacherID(int teacherID)
+        public Builder setTeacherID(String teacherID)
         {
             this.teacherID = teacherID;
             return this;

@@ -10,13 +10,13 @@ import za.ac.cput.util.Helper;
 
 public class TransportFactory
 {
-    public static Transport createTransport(int studentID,
-                                            int suppStaffID,
+    public static Transport createTransport(String studentID,
+                                            String suppStaffID,
                                             String typeOfTransport)
     {
         String transportID = Helper.generateTransportID();
         Transport transport = new Transport.Builder().
-                setTransportID(Integer.parseInt(transportID)).
+                setTransportID(transportID).
                 setStudentID(studentID).
                 setSuppStaffID(suppStaffID).
                 setTypeOfTransport(typeOfTransport).build();
