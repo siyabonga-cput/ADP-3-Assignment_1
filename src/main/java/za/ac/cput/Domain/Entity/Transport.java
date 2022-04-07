@@ -9,39 +9,39 @@ package za.ac.cput.Domain.Entity;
 public class Transport
 {
     // constructors
-    private int transportID;
-    private int studentID;
-    private int suppStaffID;
+    private String transportID;
+    private String studentID;
+    private String suppStaffID;
     private String typeOfTransport;
 
     //getters and setters
 
-    public int getTransportID()
+    public String getTransportID()
     {
         return transportID;
     }
 
-    public void setTransportID(int transportID)
+    public void setTransportID(String transportID)
     {
         this.transportID = transportID;
     }
 
-    public int getStudentID()
+    public String getStudentID()
     {
         return studentID;
     }
 
-    public void setStudentID(int studentID)
+    public void setStudentID(String studentID)
     {
         this.studentID = studentID;
     }
 
-    public int getSuppStaffID()
+    public String getSuppStaffID()
     {
         return suppStaffID;
     }
 
-    public void setSuppStaffID(int suppStaffID)
+    public void setSuppStaffID(String suppStaffID)
     {
         this.suppStaffID = suppStaffID;
     }
@@ -80,22 +80,22 @@ public class Transport
     // builder pattern
     public static class Builder
     {
-        private int transportID;
-        private int studentID;
-        private int suppStaffID;
+        private String transportID;
+        private String studentID;
+        private String suppStaffID;
         private String typeOfTransport;
 
-        public Builder setTransportID(int transportID) {
+        public Builder setTransportID(String transportID) {
             this.transportID = transportID;
             return this;
         }
 
-        public Builder setStudentID(int studentID) {
+        public Builder setStudentID(String studentID) {
             this.studentID = studentID;
             return this;
         }
 
-        public Builder setSuppStaffID(int suppStaffID) {
+        public Builder setSuppStaffID(String suppStaffID) {
             this.suppStaffID = suppStaffID;
             return this;
         }
