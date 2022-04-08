@@ -8,13 +8,18 @@ package za.ac.cput.Repository;
 
 import za.ac.cput.Domain.Entity.Teacher;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class TeacherRepository implements ITeacherRepository{
     private static TeacherRepository repository = null;
     private Set<Teacher> teacherDB = null;
 
-    private static TeacherRepository getRepository(){
+    private TeacherRepository(){
+        teacherDB = new HashSet<Teacher>();
+    }
+
+    static TeacherRepository getRepository(){
         if(repository == null){
             repository = new TeacherRepository();
         }
