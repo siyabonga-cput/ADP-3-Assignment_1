@@ -7,7 +7,7 @@ package za.ac.cput.Domain.Entity;
 
 public class StudentPrestige {
 
-    private int prestigeId;
+    private String prestigeId;
     private int studentId;
     private int academicId;
     private int sportId;
@@ -27,11 +27,11 @@ public class StudentPrestige {
     }
 
     //getters and setters
-    public int getPrestigeId() {
+    public String getPrestigeId() {
         return prestigeId;
     }
 
-    public void setPrestigeId(int prestigeId) {
+    public void setPrestigeId(String prestigeId) {
         this.prestigeId = prestigeId;
     }
 
@@ -90,7 +90,7 @@ public class StudentPrestige {
 
     //builder pattern
     public static class Builder{
-        private int prestigeId;
+        private String prestigeId;
         private int studentId;
         private int academicId;
         private int sportId;
@@ -98,7 +98,7 @@ public class StudentPrestige {
         private String prestigeType;
 
         //setters
-        public Builder setPrestigeId(int prestigeId) {
+        public Builder setPrestigeId(String prestigeId) {
             this.prestigeId = prestigeId;
             return this;
         }

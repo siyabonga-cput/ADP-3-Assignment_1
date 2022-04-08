@@ -9,7 +9,7 @@ class StudentPrestigeFactoryTest {
 
     @Test
     void createStudentPrestige() {
-        StudentPrestige studentPrestige = StudentPrestigeFactory.createStudentPrestige(1,219189048,12,1,1,"First Place Debate");
+        StudentPrestige studentPrestige = StudentPrestigeFactory.createStudentPrestige(219189048,12,1,1,"First Place Debate");
         assertNotNull(studentPrestige);
         System.out.println(studentPrestige);
     }

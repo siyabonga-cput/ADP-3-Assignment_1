@@ -6,9 +6,11 @@
 package za.ac.cput.Factory;
 
 import za.ac.cput.Domain.Entity.Culture;
+import za.ac.cput.util.Helper;
 
 public class CultureFactory {
-    public static Culture createCulture(int cultureId, int studentId, String cultureType){
+    public static Culture createCulture(int studentId, String cultureType){
+        String cultureId = Helper.generateId();
         Culture culture = new Culture.Builder().setCultureId(cultureId)
                 .setStudentId(studentId)
                 .setCultureType(cultureType)

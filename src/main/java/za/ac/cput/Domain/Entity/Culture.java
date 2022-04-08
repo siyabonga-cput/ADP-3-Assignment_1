@@ -7,7 +7,7 @@
 package za.ac.cput.Domain.Entity;
 
 public class Culture {
-    private int cultureId;
+    private String cultureId;
     private int studentId;
     private String cultureType;
 
@@ -19,11 +19,11 @@ public class Culture {
     }
 
     //getters and setters
-    public int getCultureId() {
+    public String getCultureId() {
         return cultureId;
     }
 
-    public void setCultureId(int cultureId) {
+    public void setCultureId(String cultureId) {
         this.cultureId = cultureId;
     }
 
@@ -55,12 +55,12 @@ public class Culture {
 
     //builder pattern
     public static class Builder {
-        private int cultureId;
+        private String cultureId;
         private int studentId;
         private String cultureType;
 
         //setters
-        public Builder setCultureId(int cultureId) {
+        public Builder setCultureId(String cultureId) {
             this.cultureId = cultureId;
             return this;
         }

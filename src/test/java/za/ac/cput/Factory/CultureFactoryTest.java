@@ -9,7 +9,7 @@ class CultureFactoryTest {
 
     @Test
     void createCulture() {
-        Culture culture = CultureFactory.createCulture(1, 219189048,"Debate");
+        Culture culture = CultureFactory.createCulture(219189048,"Debate");
         assertNotNull(culture);
         System.out.println(culture);
     }
