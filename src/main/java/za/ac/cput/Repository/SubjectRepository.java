@@ -8,13 +8,18 @@ package za.ac.cput.Repository;
 
 import za.ac.cput.Domain.Entity.Subject;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class SubjectRepository implements ISubjectRepository{
     private static SubjectRepository repository = null;
-    private Set<Subject> subjectDB = null;
+    private Set<Subject> subjectDB ;
 
-    private static SubjectRepository getRepository(){
+    private SubjectRepository(){
+        subjectDB = new HashSet<Subject>();
+    }
+
+    public static SubjectRepository getRepository() {
         if(repository == null){
            repository = new SubjectRepository();
         }
@@ -44,9 +49,9 @@ public class SubjectRepository implements ISubjectRepository{
         if(oldSubject != null){
            subjectDB.remove(oldSubject);
            subjectDB.add(subject);
-           return subject;
+           return null;
         }
-        return null;
+        return subject;
     }
 
     @Override
