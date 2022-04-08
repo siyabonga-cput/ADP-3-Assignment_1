@@ -15,6 +15,15 @@ public class Helper {
     }
     //====================================================
 
+    //Tiffany Kiwiets (219327732) Code for generating a primary key for feesID and supportStaffID
+    public static String generateFeesID() {
+        return UUID.randomUUID().toString();
+    }
+
+    public static String generateSupportStaffID() {
+        return UUID.randomUUID().toString();
+    }
+
     //Raeesah Williams
     //SubjectDepartment primary key
     public static String generateSubDeptID()
@@ -33,6 +42,4 @@ public class Helper {
       public static String generateID() {
         return UUID.randomUUID().toString();
     }
-
 }
-
