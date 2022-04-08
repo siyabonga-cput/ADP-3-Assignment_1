@@ -1,3 +1,9 @@
+/* SubjectFactoryTest.java
+Test the SubjectFactory
+Author: Jayden Johnson (219086796)
+Date: 6 April 2022
+*/
+
 package za.ac.cput.Factory;
 
 import org.junit.jupiter.api.Test;

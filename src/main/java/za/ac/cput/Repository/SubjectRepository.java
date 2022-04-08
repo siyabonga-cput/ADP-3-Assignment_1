@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class SubjectRepository implements ISubjectRepository{
     private static SubjectRepository repository = null;
-    private Set<Subject> subjectDB ;
+    private Set<Subject> subjectDB = null ;
 
     private SubjectRepository(){
         subjectDB = new HashSet<Subject>();
