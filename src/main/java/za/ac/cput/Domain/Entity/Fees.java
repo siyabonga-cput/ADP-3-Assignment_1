@@ -6,7 +6,7 @@ Author: Tiffany Kiwiets (219322732)
 package za.ac.cput.Domain.Entity;
 
 public class Fees {
-    private int feeID;
+    private String feeID;
     private int studentID;
     private int adminID;
     private int parentID;
@@ -21,11 +21,11 @@ public class Fees {
         this.amount = builder.amount;
     }
 
-    public int getFeeID() {
+    public String getFeeID() {
         return feeID;
     }
 
-    public void setFeeID(int feeID) {
+    public void setFeeID(String feeID) {
         this.feeID = feeID;
     }
 
@@ -73,39 +73,39 @@ public class Fees {
     }
 
     public static class Builder {
-        private int feeID;
+        private String feeID;
         private int studentID;
         private int adminID;
         private int parentID;
         private double amount;
 
-        public Fees.Builder setfeeID(int feeID) {
+        public Builder setfeeID(String feeID) {
             this.feeID = feeID;
             return this;
         }
 
-        public Fees.Builder setStudentID(int studentID) {
+        public Builder setStudentID(int studentID) {
             this.studentID = studentID;
             return this;
         }
 
-        public Fees.Builder setAdminID(int adminID) {
+        public Builder setAdminID(int adminID) {
             this.adminID = adminID;
             return this;
         }
 
-        public Fees.Builder setParentID(int parentID) {
+        public Builder setParentID(int parentID) {
             this.parentID = parentID;
             return this;
         }
 
-        public Fees.Builder setAmount(double amount) {
+        public Builder setAmount(double amount) {
             this.amount = amount;
             return this;
         }
 
 
-        public Fees.Builder copy(Fees fees) {
+        public Builder copy(Fees fees) {
             this.feeID = fees.getFeeID();
             this.studentID = fees.getStudentID();
             this.adminID = fees.getadminID();
