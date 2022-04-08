@@ -23,4 +23,23 @@ public class Helper {
     public static String generateSupportStaffID() {
         return UUID.randomUUID().toString();
     }
+
+    //Raeesah Williams
+    //SubjectDepartment primary key
+    public static String generateSubDeptID()
+    {
+        return UUID.randomUUID().toString();
+    }
+
+    // Transport primary key
+    public static String generateTransportID()
+    {
+        return UUID.randomUUID().toString();
+    }
+  
+    // Jyyden Johnson
+    // generating keys
+      public static String generateID() {
+        return UUID.randomUUID().toString();
+    }
 }
