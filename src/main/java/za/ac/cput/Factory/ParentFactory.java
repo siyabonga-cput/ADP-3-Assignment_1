@@ -10,16 +10,18 @@ import za.ac.cput.Domain.Entity.Parent;
 import za.ac.cput.util.Helper;
 
 public class ParentFactory {
-    public static Parent createParent(String parName,
+    public static Parent createParent(int studentID,
+                                      String parName,
                                       String parSurname,
                                       String cellNumber,
                                       String email) {
         String parentID = Helper.generateParentID();
-        Parent parent = new Parent.Builder().setParentID(parentID).
-                setParName(parName).
+        Parent parent = new Parent.Builder().setParentID(parentID).setStudentID(studentID)
+                .setParName(parName).
                 setParSurname(parSurname).
                 setCellNumber(cellNumber).
-                setEmail(email).build();
+                setEmail(email).
+                build();
         return parent;
     }
 }

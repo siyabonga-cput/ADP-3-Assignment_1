@@ -7,7 +7,7 @@ Author: Tiffany Kiwiets (219322732)
 package za.ac.cput.Domain.Entity;
 
 public class SupportStaff {
-    private int suppStaffID;
+    private String suppStaffID;
     private int adminID;
     private String suppStaffName;
     private String suppStaffSurname;
@@ -28,9 +28,9 @@ public class SupportStaff {
         this.typeOfWork = builder.typeOfWork;
     }
 
-    public int getSuppStaffID() { return suppStaffID; }
+    public String getSuppStaffID() { return suppStaffID; }
 
-    public void setSuppStaffID(int suppStaffID) { this.suppStaffID = suppStaffID; }
+    public void setSuppStaffID(String suppStaffID) { this.suppStaffID = suppStaffID; }
 
     public int getAdminID() { return adminID; }
 
@@ -75,7 +75,7 @@ public class SupportStaff {
     }
 
     public static class Builder {
-        private int suppStaffID;
+        private String suppStaffID;
         private int adminID;
         private String suppStaffName;
         private String suppStaffSurname;
@@ -84,7 +84,7 @@ public class SupportStaff {
         private String qualification;
         private String typeOfWork;
 
-        public Builder setSuppStaffID(int suppStaffID) {
+        public Builder setSuppStaffID(String suppStaffID) {
             this.suppStaffID = suppStaffID;
             return this;
         }
@@ -94,32 +94,32 @@ public class SupportStaff {
             return this;
         }
 
-        private Builder suppStaffName(String suppStaffID) {
+        public Builder setSuppStaffName(String suppStaffName) {
             this.suppStaffName = suppStaffName;
             return this;
         }
 
-        public Builder suppStaffSurname(String suppStaffSurname) {
+        public Builder setSuppStaffSurname(String suppStaffSurname) {
             this.suppStaffSurname = suppStaffSurname;
             return  this;
         }
 
-        public Builder cellNumber(int cellNumber) {
+        public Builder setCellNumber(int cellNumber) {
             this.cellNumber = cellNumber;
             return this;
         }
 
-        public Builder importHealthInfo(String importHealthInfo) {
+        public Builder setImportHealthInfo(String importHealthInfo) {
             this.importHealthInfo = importHealthInfo;
             return this;
         }
 
-        public Builder qualification(String qualification) {
+        public Builder setQualification(String qualification) {
             this.qualification = qualification;
             return this;
         }
 
-        public Builder typeOfWork(String typeOfWork) {
+        public Builder setTypeOfWork(String typeOfWork) {
             this.typeOfWork = typeOfWork;
             return this;
         }

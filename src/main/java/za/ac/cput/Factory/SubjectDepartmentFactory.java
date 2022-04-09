@@ -10,13 +10,13 @@ import za.ac.cput.util.Helper;
 
 public class SubjectDepartmentFactory
 {
-    public static SubjectDepartment createSubjectDepartment(int subjectID,
-                                                            int teacherID,
+    public static SubjectDepartment createSubjectDepartment(String subjectID,
+                                                            String teacherID,
                                                             String typeOfDepartment)
     {
         String subDeptID = Helper.generateSubDeptID();
         SubjectDepartment subjectDepartment = new SubjectDepartment.Builder().
-                setSubDeptID(Integer.parseInt(subDeptID)).
+                setSubDeptID(subDeptID).
                 setSubjectID(subjectID).
                 setTeacherID(teacherID).
                 setTypeOfDepartment(typeOfDepartment).build();
