@@ -7,9 +7,9 @@ Date: 29 March 2022
 package za.ac.cput.Domain.Entity;
 
 public class Teacher {
-    private int teacherID;
-    private int adminID;
-    private int subDeptID;
+    private String teacherID;
+    private String adminID;
+    private String subDeptID;
     private String teachName;
     private String teachSurname;
     private String cellNum;
@@ -29,25 +29,29 @@ public class Teacher {
         this.post = builder.post;
     }
 
-    public int getTeacherID() {
+    public String getTeacherID() {
         return teacherID;
     }
 
-    public void setTeacherID(int teacherID) { this.teacherID = teacherID; }
 
-    public int getAdminID() {
+    public void setTeacherID(String teacherID) {
+        this.teacherID = teacherID;
+    }
+
+
+    public String getAdminID() {
         return adminID;
     }
 
-    public void setAdminID(int adminID) {
+    public void setAdminID(String adminID) {
         this.adminID = adminID;
     }
 
-    public int getSubDeptID() {
+    public String getSubDeptID() {
         return subDeptID;
     }
 
-    public void setSubDeptID(int subDeptID) {
+    public void setSubDeptID(String subDeptID) {
         this.subDeptID = subDeptID;
     }
 
@@ -115,9 +119,9 @@ public class Teacher {
     }
 
     public static class Builder{
-        private int teacherID;
-        private int adminID;
-        private int subDeptID;
+        private String teacherID;
+        private String adminID;
+        private String subDeptID;
         private String teachName;
         private String teachSurname;
         private String cellNum;
@@ -125,17 +129,17 @@ public class Teacher {
         private String importantInfo;
         private String post;
 
-        public Builder setTeacherID(int teacherID) {
+        public Builder setTeacherID(String teacherID) {
             this.teacherID = teacherID;
             return this;
         }
 
-        public Builder setAdminID(int adminID) {
+        public Builder setAdminID(String adminID) {
             this.adminID = adminID;
             return this;
         }
 
-        public Builder setSubDeptID(int subDeptID) {
+        public Builder setSubDeptID(String subDeptID) {
             this.subDeptID = subDeptID;
             return this;
         }

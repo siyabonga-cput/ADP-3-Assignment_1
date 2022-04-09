@@ -31,7 +31,8 @@ public class StudentFactory {
                 setIdNumber(idNumber).
                 setAddress(address).
                 setImportantHealthInfo(importantHealthInfo).
-                setStuAverage(stuAverage).build();
+                setStuAverage(stuAverage).
+                build();
         return student;
     }
 }
