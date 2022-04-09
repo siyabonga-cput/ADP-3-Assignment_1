@@ -42,7 +42,13 @@ public class Helper {
     {
         return UUID.randomUUID().toString();
     }
-  
+
+
+    public static boolean isNotEmpty(String s){
+
+        return(s== null || s.isEmpty()|| s.equals("")|| s.equalsIgnoreCase("null"));
+    }
+
     // Jyyden Johnson
     // generating keys
       public static String generateID() {
