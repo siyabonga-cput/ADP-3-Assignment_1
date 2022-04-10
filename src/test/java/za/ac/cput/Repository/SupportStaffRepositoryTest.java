@@ -9,8 +9,9 @@ package za.ac.cput.Repository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.Domain.Entity.SupportStaff;
-import za.ac.cput.Factory.SupportStaff;
 import org.junit.jupiter.api.MethodOrderer;
+import za.ac.cput.Factory.SupportStaffFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -18,17 +19,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class SupportStaffRepositoryTest {
     private static SupportStaffRepository repository = SupportStaffRepository.getRepository();
     private static SupportStaff supportStaff = SupportStaffFactory.createSupportStaff ( 653214965,
-            745896,
             "Jonah",
             "Adams",
-            0326596458,
+            03265645453,
             "None",
             "Matric",
             "Classroom cleaner");
 
     @Test
     void a_create() {
-        SupportStaff created = repository.create(SupportStaff);
+        SupportStaff created = repository.create(supportStaff);
         assertEquals(supportStaff.getSuppStaffID(), created.getSuppStaffID());
         System.out.println("Created: " + created);
     }
@@ -46,7 +46,7 @@ class SupportStaffRepositoryTest {
                 .setAdminID(125696)
                 .setSuppStaffName("Clayton")
                 .setSuppStaffSurname("Nelvin")
-                .setCellNumber(0849650015)
+                .setCellNumber(0244650015)
                 .setImportHealthInfo("Allegic to nuts")
                 .setQualification("Degree in social worker")
                 .setTypeOfWork("Student counselor")
@@ -65,9 +65,6 @@ class SupportStaffRepositoryTest {
     @Test
     void d_getAll() {
         System.out.println("Show all: ");
-        System.out.println(repository.getAll);
+        System.out.println(repository.getAll());
     }
-
-
-
 }

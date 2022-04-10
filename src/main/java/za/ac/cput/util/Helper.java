@@ -8,7 +8,6 @@ public class Helper {
 
         return UUID.randomUUID().toString();
     }
-
     //====================================================
     //Marvin Hope
     //Generating a primary key for StudentID

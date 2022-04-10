@@ -8,22 +8,18 @@ package za.ac.cput.Factory;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Domain.Entity.SupportStaff;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class SupportStaffTest {
-
+class SupportStaffFactoryTest {
     @Test
     void createSupportStaff() {
         SupportStaff supportStaff = SupportStaffFactory.createSupportStaff( 635941258,
-                852369,
-                "Jacob",
                 "Julius",
-                0845335985,
-                "Allegic to bees",
-                "Degree in sport management",
-                "Head of sports management" );
+                "Jacob",
+                02153354567,
+                "Allegic to bees", "Degree in sport management",
+                "Head of sports management");
         assertNotNull(supportStaff);
         System.out.println(supportStaff);
-    }
+}
 }

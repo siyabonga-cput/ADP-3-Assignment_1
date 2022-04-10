@@ -21,6 +21,4 @@ public class FeesFactory {
                 setAmount(amount).build();
         return fees;
     }
-
-
 }

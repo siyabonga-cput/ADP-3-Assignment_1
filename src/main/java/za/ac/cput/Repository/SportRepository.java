@@ -59,14 +59,14 @@ public class SportRepository implements ISportRepository {
     }
 
     @Override
-    public void delete(String sportID) {
+    public boolean delete(String sportID) {
         Sport sportDelete = read(sportID);
         if (sportDelete == null){
             System.out.println("Sport is null");
         }
         sportDB.remove(sportDelete);
         System.out.println("sport removed");
-
+        return true;
     }
 
     @Override

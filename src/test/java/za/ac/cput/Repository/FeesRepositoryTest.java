@@ -3,7 +3,6 @@ FeesRepositoryTest.java
 Testing for FeesRepositoryTest
 Author: Tiffany Kiwiets (219322732)
  */
-
 package za.ac.cput.Repository;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ class FeesRepositoryTest {
     private static Fees fees = FeesFactory.createFees( 4563,
             254966325,
             452369,
-            749625496,
             1900.90 );
 
     @Test
@@ -39,7 +37,7 @@ class FeesRepositoryTest {
 
     @Test
     void c_update() {
-        Fees update = new Fees.Builder().copy(fees).setFeeID("9563")
+        Fees update = new Fees.Builder().copy(fees).setfeeID("123456")
                 .setStudentID(956311459)
                 .setAdminID(856321)
                 .setParentID(756321563)
@@ -61,7 +59,4 @@ class FeesRepositoryTest {
         System.out.println("Show all: ");
         System.out.println(repository.getAll());
     }
-
-
-
 }
