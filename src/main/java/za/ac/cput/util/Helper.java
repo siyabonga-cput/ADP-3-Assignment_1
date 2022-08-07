@@ -3,7 +3,6 @@ package za.ac.cput.util;
 import java.util.UUID;
 
 public class Helper {
-
     public static String generateId(){
 
         return UUID.randomUUID().toString();
@@ -50,7 +49,8 @@ public class Helper {
 
     // Jyyden Johnson
     // generating keys
-      public static String generateID() {
+    public static String generateID() {
         return UUID.randomUUID().toString();
     }
 }
+
