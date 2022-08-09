@@ -1,16 +1,17 @@
-///* ITransportRepository.java
-//   Repository Interface for the Transport
-//   Author: Raeesah Williams (219091498)
-//   Date: 2 April 2022
-//*/
-//package za.ac.cput.Repository.Interface.StaffDetailsInterface;
-//
-//import za.ac.cput.Domain.StudentDetails.Transport;
-//import za.ac.cput.Repository.IRepository;
-//
-//import java.util.Set;
-//
-//public interface ITransportRepository extends IRepository<Transport, String>
-//{
-//    public Set<Transport> getAll();
-//}
+/* ITransportRepository.java
+   Repository Interface for the Transport
+   Author: Raeesah Williams (219091498)
+   Date: 07 August 2022
+*/
+
+package za.ac.cput.repository.Interface.StaffDetailsInterface;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import za.ac.cput.domain.StudentDetails.Transport;
+
+@Repository
+public interface ITransportRepository extends JpaRepository<Transport, String>
+{
+
+}
