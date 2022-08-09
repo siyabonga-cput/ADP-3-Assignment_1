@@ -87,8 +87,6 @@ public class Parent {
 
     //====================================================
     // toString
-
-
     @Override
     public String toString() {
         return "Parent{" +
