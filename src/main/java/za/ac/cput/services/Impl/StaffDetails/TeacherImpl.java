@@ -6,6 +6,7 @@ Date: 7 August 2022
 package za.ac.cput.services.Impl.StaffDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.StaffDetails.Teacher;
 import za.ac.cput.repository.StaffDetailsRepo.ITeacherRepository;
 import za.ac.cput.services.Interface.StaffDetails.ITeacher;
@@ -13,7 +14,7 @@ import za.ac.cput.services.Interface.StaffDetails.ITeacher;
 import java.util.List;
 import java.util.Optional;
 
-
+@Service
 public class TeacherImpl implements ITeacher {
     private final ITeacherRepository repository;
 

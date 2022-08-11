@@ -1,7 +1,7 @@
 /* IStudentRepository.java
-Enabling jpaRepository
+Repository for IStudentRepository
 Author: Marvin Peter Hope (219445842)
-Date: 7 August 2022
+Date: 2 April 2022
 */
 
 package za.ac.cput.repository.StudentDetailsRepo;

@@ -41,7 +41,7 @@ class StudentImplTest {
     }
     @Test
     void findAll() {
-        List<Student> studentList = this.service.findall();
+        List<Student> studentList = this.service.findAll();
         System.out.println(studentList);
         assertEquals(1,studentList.size());
     }
@@ -63,7 +63,7 @@ class StudentImplTest {
     @Test
     void delete() {
         Student delete = this.service.save(this.student);
-        List<Student> studentList = this.service.findall();
+        List<Student> studentList = this.service.findAll();
         assertEquals(1,studentList.size());
         System.out.println("Deleted!");
         this.service.delete(delete);

@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.StaffDetails.Teacher;
+import za.ac.cput.domain.StudentDetails.Student;
 import za.ac.cput.factory.StaffDetails.TeacherFactory;
+import za.ac.cput.factory.StudentDetails.StudentFactory;
 import za.ac.cput.services.Interface.StaffDetails.ITeacher;
 
 import java.util.List;
@@ -22,19 +24,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class TeacherImplTest {
+    private Student student;
     private Teacher teacher;
-    @Autowired
-    private ITeacher service;
+
+    @Autowired private ITeacher services;
+
     @BeforeEach
     void setUp() {
-        this.teacher = TeacherFactory.createTeacher("Mike",
+        this.student = StudentFactory.createStudent("Jack",
+                "Molten",
+                12,
+                "5th January 1999",
+                3345,
+                "14 Hope Street Cape Town",
+                "None",
+                54.6);
+        this.teacher = TeacherFactory.createTeacher(
                 "Mike",
-                "2034861",
-                "master",
-                "Allergic to grapes",
-                "Government");
+                "Ben",
+                "085 564 3456",
+                "Diploma in Maths",
+                "None",
+                "Maths Teacher",
+                student);
 
-        Teacher save = this.service.save(this.teacher);
+        Teacher save = this.services.save(this.teacher);
         assertAll(
                 () -> assertNotNull(save),
                 () -> assertEquals(this.teacher, save)
@@ -42,19 +56,19 @@ class TeacherImplTest {
     }
     @Test
     void findAll() {
-        List<Teacher> teacherList = this.service.findall();
+        List<Teacher> teacherList = this.services.findall();
         System.out.println(teacherList);
         assertEquals(1,teacherList.size());
     }
     @Test
     void save() {
-        Teacher save = this.service.save(this.teacher);
+        Teacher save = this.services.save(this.teacher);
         System.out.println(save);
         assertNotNull(save);
     }
     @Test
     void read() {
-        Optional<Teacher> read = this.service.read(this.teacher.getTeacherID());
+        Optional<Teacher> read = this.services.read(this.teacher.getTeacherID());
         System.out.println(read);
         assertAll(
                 () -> assertTrue(read.isPresent()),
@@ -63,12 +77,10 @@ class TeacherImplTest {
     }
     @Test
     void delete() {
-        Teacher delete = this.service.save(this.teacher);
-        List<Teacher> teacherList = this.service.findall();
+        Teacher delete = this.services.save(this.teacher);
+        List<Teacher> teacherList = this.services.findall();
         assertEquals(1,teacherList.size());
         System.out.println("Deleted!");
-        this.service.delete(delete);
+        this.services.delete(delete);
     }
-
-
 }

@@ -22,7 +22,8 @@ public class FeesImpl implements IFees {
     @Autowired public FeesImpl(IFeesRepository repository) { this.repository = repository; }
 
     @Override
-    public List <Fees> findall() {return this.repository.findAll(); }
+    public List <Fees> findall() {
+        return this.repository.findAll(); }
 
     @Override
     public Fees save(Fees fees) { return this.repository.save(fees); }

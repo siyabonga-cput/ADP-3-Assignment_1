@@ -11,5 +11,5 @@ import za.ac.cput.services.IService;
 import java.util.List;
 
 public interface IStudent extends IService<Student, String> {
-    List<Student> findall();
+    List<Student> findAll();
 }

@@ -8,32 +8,31 @@ package za.ac.cput.factory.StaffDetails;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.StaffDetails.Teacher;
+import za.ac.cput.domain.StudentDetails.Student;
+import za.ac.cput.factory.StudentDetails.StudentFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TeacherFactoryTest {
     @Test
     public void BuildWithSuccess() {
-        Teacher teacher = TeacherFactory.createTeacher("mike"
-                ,"mike"
-                ,"456813"
-                ,"Jack"
-                ,"Allergic to grapes"
-                ,"Government");
+        Student student = StudentFactory.createStudent("Jack",
+                "Molten",
+                12,
+                "5th January 1999",
+                3345,
+                "14 Hope Street Cape Town",
+                "None",
+                54.6);
+
+        Teacher teacher = TeacherFactory.createTeacher("",
+                "John",
+                "072 456 6783",
+                "Degree in maths",
+                "None",
+                "Maths teacher",
+                student);
         assertNotNull(teacher);
         System.out.println(teacher);
-    }
-
-    @Test public void buildWithError() {
-        Exception error = assertThrows(IllegalArgumentException.class, () ->
-                TeacherFactory.createTeacher("mike"
-                        ,"mike"
-                        ,"456813"
-                        ,"Jack"
-                        ,"Allergic to grapes"
-                        ,""));
-        String ExceptionMessage = error.getMessage();
-        System.out.println(error);
-        assertSame("Post Required!", ExceptionMessage);
     }
 }

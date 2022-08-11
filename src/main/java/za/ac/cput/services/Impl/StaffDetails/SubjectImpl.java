@@ -5,6 +5,7 @@ Date: 7 August 2022
 package za.ac.cput.services.Impl.StaffDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.StaffDetails.Subject;
 import za.ac.cput.repository.StaffDetailsRepo.ISubjectRepository;
 import za.ac.cput.services.Interface.StaffDetails.ISubject;
@@ -12,7 +13,7 @@ import za.ac.cput.services.Interface.StaffDetails.ISubject;
 import java.util.List;
 import java.util.Optional;
 
-
+@Service
 public class SubjectImpl implements ISubject {
     private final ISubjectRepository repository;
 
@@ -34,6 +35,7 @@ public class SubjectImpl implements ISubject {
     @Override
     public void delete(Subject subject) {
         this.repository.delete(subject);
+
     }
 
     @Override
