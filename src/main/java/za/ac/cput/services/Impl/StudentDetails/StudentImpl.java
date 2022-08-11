@@ -25,7 +25,6 @@ public class StudentImpl implements IStudent {
 
     @Override
     public Student save(Student student) {
-
         return this.repository.save(student);
     }
 
@@ -40,7 +39,7 @@ public class StudentImpl implements IStudent {
     }
 
     @Override
-    public List<Student> findall() {
+    public List<Student> findAll() {
         return this.repository.findAll();
     }
 }

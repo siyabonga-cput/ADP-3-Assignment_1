@@ -4,50 +4,62 @@ Entity for Fees
 Author: Tiffany Kiwiets (219322732)
 */
 
+//// You just require admins ID
+
 package za.ac.cput.domain.ParentDetails;
 
-import org.hibernate.annotations.*;
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import za.ac.cput.domain.StudentDetails.Student;
-import za.ac.cput.domain.Admin.Admin;
-import za.ac.cput.domain.ParentDetails.Parent;
 
-import javax.persistence.Id;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import java.util.Objects;
+
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
 public class Fees {
-    @NotNull @Id private String feeID;
+    @NotNull
+    @Id
+    private String feeID;
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Student studentID;
-    private Admin adminID;
+    //    private Admin adminID;
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Parent parentID;
     @NotNull private double amount;
+
+    protected Fees() {
+    }
 
     //Private constructor
     private Fees(Builder builder) {
         this.feeID = builder.feeID;
         this.studentID = builder.studentID;
-        this.adminID = builder.adminID;
+//        this.adminID = builder.adminID;
         this.parentID = builder.parentID;
         this.amount = builder.amount;
     }
 
     //getters
+
+
     public String getFeeID() {
         return feeID;
     }
-//
 
-    public int getStudentID() {
+    public Student getStudentID() {
         return studentID;
     }
 
-    public int getadminID() {
-        return adminID;
-    }
-
-    public int getParentID() {
+    public Parent getParentID() {
         return parentID;
     }
 
@@ -60,21 +72,19 @@ public class Fees {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Fees fees = (Fees) o;
-        return feeID.equals(fees.feeID) && studentID.equals(fees.studentID) && adminID.equals(fees.adminID)
-                && parentID.equals(fees.parentID) && amount.equals(fees.amount);
+        return Double.compare(fees.amount, amount) == 0 && feeID.equals(fees.feeID) && studentID.equals(fees.studentID) && parentID.equals(fees.parentID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feeID, studentID, adminID, parentID, amount);
+        return Objects.hash(feeID, studentID, parentID, amount);
     }
 
     @Override
     public String toString() {
         return "Fees{" +
-                "feeID=" + feeID +
+                "feeID='" + feeID + '\'' +
                 ", studentID=" + studentID +
-                ", adminID=" + adminID +
                 ", parentID=" + parentID +
                 ", amount=" + amount +
                 '}';
@@ -82,9 +92,9 @@ public class Fees {
 
     public static class Builder {
         private String feeID;
-        private int studentID;
-        private int adminID;
-        private int parentID;
+        private Student studentID;
+      //  private int adminID;
+        private Parent parentID;
         private double amount;
 
         public Builder setfeeID(String feeID) {
@@ -92,17 +102,17 @@ public class Fees {
             return this;
         }
 
-        public Builder setStudentID(int studentID) {
+        public Builder setStudentID(Student studentID) {
             this.studentID = studentID;
             return this;
         }
 
-        public Builder setAdminID(int adminID) {
-            this.adminID = adminID;
-            return this;
-        }
+//        public Builder setAdminID(int adminID) {
+//            this.adminID = adminID;
+//            return this;
+//        }
 
-        public Builder setParentID(int parentID) {
+        public Builder setParentID(Parent parentID) {
             this.parentID = parentID;
             return this;
         }
@@ -116,7 +126,7 @@ public class Fees {
         public Builder copy(Fees fees) {
             this.feeID = fees.getFeeID();
             this.studentID = fees.getStudentID();
-            this.adminID = fees.getadminID();
+//            this.adminID = fees.getadminID();
             this.parentID = fees.getParentID();
             this.amount = fees.getAmount();
             return this;
@@ -125,5 +135,6 @@ public class Fees {
         public Fees build() { return new Fees( this); }
 
     }
-}
 
+
+}
