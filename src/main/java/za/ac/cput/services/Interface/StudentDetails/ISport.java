@@ -1,4 +1,4 @@
-package za.ac.cput.services.Interface.StudentDetails;
-
-public interface ISport {
-}
+//package za.ac.cput.services.Interface.StudentDetails;
+//
+//public interface ISport {
+//}

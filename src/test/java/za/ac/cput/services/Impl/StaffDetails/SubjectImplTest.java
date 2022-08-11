@@ -10,7 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.StaffDetails.Subject;
+import za.ac.cput.domain.StaffDetails.SubjectDepartment;
+import za.ac.cput.domain.StaffDetails.Teacher;
+import za.ac.cput.domain.StudentDetails.Student;
+import za.ac.cput.factory.StaffDetails.SubjectDepartmentFactory;
 import za.ac.cput.factory.StaffDetails.SubjectFactory;
+import za.ac.cput.factory.StaffDetails.TeacherFactory;
+import za.ac.cput.factory.StudentDetails.StudentFactory;
 import za.ac.cput.services.Interface.StaffDetails.ISubject;
 
 import java.util.List;
@@ -21,14 +27,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class SubjectImplTest {
+    private Student student;
+    private Teacher teacher;
+    private SubjectDepartment subjectDepartment;
     private Subject subject;
     @Autowired
     private ISubject service;
     @BeforeEach
     void setUp() {
-        this.subject = SubjectFactory.createSubject("English",
-                96,
-                56);
+        this.student = StudentFactory.createStudent("Jack",
+                "Molten",
+                12,
+                "5th January 1999",
+                3345,
+                "14 Hope Street Cape Town",
+                "None",
+                54.6);
+        this.teacher = TeacherFactory.createTeacher(
+                "Mike",
+                "Ben",
+                "085 564 3456",
+                "Diploma in Maths",
+                "None",
+                "Maths Teacher",
+                student);
+        this.subjectDepartment = SubjectDepartmentFactory.createSubjectDepartment(teacher,
+                "Math");
+        this.subject = SubjectFactory.createSubject(
+                "Math",
+                subjectDepartment,
+                student,
+                78.34,
+                85.7);
         Subject save = this.service.save(this.subject);
         assertAll(
                 () -> assertNotNull(save),

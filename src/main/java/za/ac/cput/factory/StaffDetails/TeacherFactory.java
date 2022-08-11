@@ -6,17 +6,20 @@ Date: 7 August 2022
 
 package za.ac.cput.factory.StaffDetails;
 
+import za.ac.cput.domain.StaffDetails.SubjectDepartment;
 import za.ac.cput.domain.StaffDetails.Teacher;
+import za.ac.cput.domain.StudentDetails.Student;
 import za.ac.cput.util.Helper;
 
 public class TeacherFactory {
     public static Teacher createTeacher(
-                                        String teachName,
-                                        String teachSurname,
-                                        String cellNum,
-                                        String qualification,
-                                        String importantInfo,
-                                        String post){
+            String teachName,
+            String teachSurname,
+            String cellNum,
+            String qualification,
+            String importantInfo,
+            String post,
+            Student student){
 
         String teacherID = Helper.generateID();
         Teacher teacher = new Teacher.Builder().setTeacherID(teacherID)
@@ -26,6 +29,7 @@ public class TeacherFactory {
                 .setQualification(qualification)
                 .setImportantInfo(importantInfo)
                 .setPost(post)
+                .setStudent(student)
                 .build();
         return teacher;
     }

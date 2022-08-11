@@ -8,7 +8,7 @@ package za.ac.cput.services.Impl.StaffDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.StaffDetails.SubjectDepartment;
-import za.ac.cput.repository.Interface.StaffDetailsInterface.ISubjectDepartmentRepository;
+import za.ac.cput.repository.StaffDetailsRepo.ISubjectDepartmentRepository;
 import za.ac.cput.services.Interface.StaffDetails.ISubjectDepartment;
 
 import java.util.List;

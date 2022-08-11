@@ -120,22 +120,22 @@ public class Parent {
             return this;
         }
 
-        public Builder setParName(String parName) {
+        public Parent.Builder setParName(String parName) {
             this.parName = parName;
             return this;
         }
 
-        public Builder setParSurname(String parSurname) {
+        public Parent.Builder setParSurname(String parSurname) {
             this.parSurname = parSurname;
             return this;
         }
 
-        public Builder setCellNumber(String cellNumber) {
+        public Parent.Builder setCellNumber(String cellNumber) {
             this.cellNumber = cellNumber;
             return this;
         }
 
-        public Builder setEmail(String email) {
+        public Parent.Builder setEmail(String email) {
             this.email = email;
             return this;
         }
