@@ -14,7 +14,7 @@
 //import java.util.Objects;
 //
 //@Entity
-//public class SupportStaff {
+//public class SupportStaff implements Serializable{
 //    @NotNull @Id
 //    private String suppStaffID;
 //    private int adminID;

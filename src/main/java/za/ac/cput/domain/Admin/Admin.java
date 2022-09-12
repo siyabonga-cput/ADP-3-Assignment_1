@@ -1,24 +1,28 @@
+//Siyabonga Tumelo Masango
+//219200815
+//31/03/2022
+//Admin.javapackage za.ac.cput.domain.Admin;
+
 package za.ac.cput.domain.Admin;
 
 import com.sun.istack.NotNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Objects;
 
-//Siyabonga Tumelo Masango
-//219200815
-//31/03/2022
-//Admin.java
 @Entity
-public class Admin {
+public class Admin implements Serializable {
 
     @NotNull
     @Id
     private String adminID;
     @NotNull
-    @Id
     private String bankingID;
 
+    protected Admin(){
+    }
 
     private Admin(Builder builder) {
         this.adminID = builder.adminID;
@@ -29,16 +33,21 @@ public class Admin {
         return adminID;
     }
 
-    public void setAdminID(String adminID) {
-        this.adminID = adminID;
-    }
-
     public String getBankingID() {
         return bankingID;
     }
 
-    public void setBankingID(String bankingID) {
-        this.bankingID = bankingID;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Admin admin = (Admin) o;
+        return adminID.equals(admin.adminID) && bankingID.equals(admin.bankingID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(adminID, bankingID);
     }
 
     @Override

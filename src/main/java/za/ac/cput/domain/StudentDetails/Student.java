@@ -46,7 +46,7 @@ public class Student {
     }
 
     //====================================================
-    //Getters and Setters
+    //Getters
     public String getStudentID() {
         return studentID;
     }
