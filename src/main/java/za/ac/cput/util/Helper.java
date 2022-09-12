@@ -7,6 +7,10 @@ public class Helper {
 
         return UUID.randomUUID().toString();
     }
+
+    public static String generateAdminId() {
+        return  UUID.randomUUID().toString();
+    }
     //====================================================
     //Marvin Hope
     //Generating a primary key for StudentID

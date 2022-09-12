@@ -26,7 +26,6 @@ class ParentImplTest {
     private Parent parent;
 
     @Autowired private IParent service;
-
     @BeforeEach
     void setUp() {
         this.student = StudentFactory.createStudent("Jack",

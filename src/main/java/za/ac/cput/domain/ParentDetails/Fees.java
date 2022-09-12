@@ -17,13 +17,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
-public class Fees {
+public class Fees implements Serializable {
     @NotNull
     @Id
     private String feeID;

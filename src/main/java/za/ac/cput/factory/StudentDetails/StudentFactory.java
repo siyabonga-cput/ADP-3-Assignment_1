@@ -20,7 +20,8 @@ public class StudentFactory {
                                         String importantHealthInfo,
                                         double stuAverage) {
         String studentID = Helper.generateStudentID();
-        Student student = new Student.Builder().setStudentID(studentID).
+        Student student = new Student.Builder().
+                setStudentID(studentID).
                 setStuName(stuName).
                 setStuSurname(stuSurname).
                 setGrade(grade).

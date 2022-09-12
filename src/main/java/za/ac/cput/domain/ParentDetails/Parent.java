@@ -14,13 +14,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
-public class Parent {
+public class Parent implements Serializable {
     @NotNull @Id private String parentID;
     @ManyToOne(cascade = {PERSIST, MERGE})
     @NotFound(action = NotFoundAction.IGNORE)
