@@ -6,17 +6,22 @@
 package za.ac.cput.factory.Admin;
 
 import za.ac.cput.domain.Admin.Admin;
-import za.ac.cput.domain.ParentDetails.Parent;
 import za.ac.cput.util.Helper;
 public class AdminFactory {
     public static Admin createAdmin(
-            String bankingID) {
-        String AdminID = Helper.generateAdminId();
-        Admin admin = new Admin.Builder()
+                  String AdminID,
+                  String bankingID) {
+
+        Helper.isEmptyOrNull("AdminID");
+        Helper.isEmptyOrNull("bankingID");
+
+        Helper.CheckStringParm("AdminID",AdminID);
+        Helper.CheckStringParm("bankingID",bankingID);
+
+       return new Admin.Builder()
                 .setAdminID(AdminID)
                 .setBankingID(bankingID)
                 .build();
-        return admin;
     }
 }
 

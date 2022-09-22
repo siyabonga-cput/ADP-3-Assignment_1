@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @Service
 public class StudentImpl implements IStudent {
+    @Autowired
     private final IStudentRepository repository;
 
     @Autowired
@@ -29,10 +30,9 @@ public class StudentImpl implements IStudent {
     }
 
     @Override
-    public Optional<Student> read(String s) {
-        return this.repository.findById(s);
+    public Optional<Student> read(String id) {
+        return this.repository.findById(id);
     }
-
     @Override
     public void delete(Student student) {
         this.repository.delete(student);

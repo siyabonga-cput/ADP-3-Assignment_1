@@ -4,12 +4,13 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Student {
-    @NotNull
+public class Student implements Serializable {
     @Id
+    @NotNull
     private String studentID;
     @NotNull
     private String stuName;
@@ -50,12 +51,9 @@ public class Student {
     public String getStudentID() {
         return studentID;
     }
-
     public String getStuName() {
         return stuName;
     }
-
-
     public String getStuSurname() {
         return stuSurname;
     }
@@ -122,66 +120,67 @@ public class Student {
         private int grade;
         private String Dob;
         private int idNumber;
-        private String address,importantHealthInfo;
+        private String address, importantHealthInfo;
         private double stuAverage;
 
-        public Student.Builder setStudentID(String studentID) {
+        public Student.Builder StudentID(String studentID) {
             this.studentID = studentID;
             return this;
         }
 
-        public Student.Builder setStuName(String stuName) {
+        public Student.Builder StuName(String stuName) {
             this.stuName = stuName;
             return this;
         }
 
-        public Student.Builder setStuSurname(String stuSurname) {
+        public Student.Builder StuSurname(String stuSurname) {
             this.stuSurname = stuSurname;
             return this;
         }
 
-        public Student.Builder setGrade(int grade) {
+        public Student.Builder Grade(int grade) {
             this.grade = grade;
             return this;
         }
 
-        public Student.Builder setDob(String dob) {
+        public Student.Builder Dob(String dob) {
             Dob = dob;
             return this;
         }
 
-        public Student.Builder setIdNumber(int idNumber) {
+        public Student.Builder IdNumber(int idNumber) {
             this.idNumber = idNumber;
             return this;
         }
 
-        public Student.Builder setAddress(String address) {
+        public Student.Builder Address(String address) {
             this.address = address;
             return this;
         }
 
-        public Student.Builder setImportantHealthInfo(String importantHealthInfo) {
+        public Student.Builder ImportantHealthInfo(String importantHealthInfo) {
             this.importantHealthInfo = importantHealthInfo;
             return this;
         }
 
-        public Student.Builder setStuAverage(double stuAverage) {
+        public Student.Builder StuAverage(double stuAverage) {
             this.stuAverage = stuAverage;
             return this;
         }
 
-        public Student.Builder copy(Student student) {
-            this.studentID = student.getStudentID();
-            this.stuName = student.getStuName();
-            this.stuSurname = student.getStuSurname();
-            this.grade = student.getGrade();
-            this.Dob = student.getDob();
-            this.idNumber = student.getIdNumber();
-            this.address = student.getAddress();
-            this.importantHealthInfo = student.getImportantHealthInfo();
-            this.stuAverage = student.getStuAverage();
+        public Builder copy(Student student) {
+            this.studentID = student.studentID;
+            this.stuName = student.stuName;
+            this.stuSurname = student.stuSurname;
+            this.grade = student.grade;
+            this.Dob = student.Dob;
+            this.idNumber = student.idNumber;
+            this.address = student.address;
+            this.importantHealthInfo = student.importantHealthInfo;
+            this.stuAverage = student.stuAverage;
             return this;
         }
+
         public Student build() {
             return new Student(this);
         }
