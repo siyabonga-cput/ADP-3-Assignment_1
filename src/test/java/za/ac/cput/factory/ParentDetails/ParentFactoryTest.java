@@ -15,7 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParentFactoryTest {
     @Test
     public void BuildWithSuccess() {
-        Student student = StudentFactory.createStudent("Jack",
+        Student student = StudentFactory.Build(
+                "2138532",
+                "Jack",
                 "Molten",
                 12,
                 "5th January 1999",
@@ -23,18 +25,22 @@ class ParentFactoryTest {
                 "14 Hope Street Cape Town",
                 "None",
                 54.6);
-        Parent parent = ParentFactory.createParent(student,
+        Parent parent = ParentFactory.build(
+                "2343544",
                 "John",
                 "Molten",
                 "073 697 1537",
-                "johnmolton12@gmail.com");
+                "johnmolton12@gmail.com",
+                student);
         assertNotNull(parent);
         System.out.println(parent);
     }
 
     @Test
     public void buildWithError() {
-        Student student = StudentFactory.createStudent("Jack",
+        Student student = StudentFactory.Build(
+                "2138532",
+                "Jack",
                 "Molten",
                 12,
                 "5th January 1999",
@@ -43,13 +49,14 @@ class ParentFactoryTest {
                 "None",
                 54.6);
         Exception exception = assertThrows(IllegalArgumentException.class,
-                () -> ParentFactory.createParent(null,
+                () -> ParentFactory.build(null,
                         "John",
                         "Molten",
                         "073 697 1537",
-                        "johnmolton12@gmail.com"));
+                        "johnmolton12@gmail.com",
+                        student));
         String exceptionMessage = exception.getMessage();
         System.out.println(exceptionMessage);
-        assertSame("staff ID is required!", exceptionMessage);
+        assertSame("Parent ID is required!", exceptionMessage);
     }
 }

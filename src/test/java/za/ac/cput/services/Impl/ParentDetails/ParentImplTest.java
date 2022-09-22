@@ -5,8 +5,7 @@ Date: 7 August 2022
 */
 package za.ac.cput.services.Impl.ParentDetails;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.ParentDetails.Parent;
@@ -21,6 +20,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ParentImplTest {
     private Student student;
     private Parent parent;
@@ -28,7 +28,9 @@ class ParentImplTest {
     @Autowired private IParent service;
     @BeforeEach
     void setUp() {
-        this.student = StudentFactory.createStudent("Jack",
+        this.student = StudentFactory.Build(
+                "2138532",
+                "Jack",
                 "Molten",
                 12,
                 "5th January 1999",
@@ -36,11 +38,13 @@ class ParentImplTest {
                 "14 Hope Street Cape Town",
                 "None",
                 54.6);
-        this.parent = ParentFactory.createParent(student,
+        this.parent = ParentFactory.build(
+                "2343544",
                 "John",
                 "Molten",
                 "073 697 1537",
-                "johnmolton12@gmail.com");
+                "johnmolton12@gmail.com",
+                student);
         Parent save = this.service.save(this.parent);
         assertAll(
                 () -> assertNotNull(save),
@@ -48,6 +52,7 @@ class ParentImplTest {
         );
     }
     @Test
+    @Order(1)
     void findAll() {
         List<Parent> parentList = this.service.findall();
         System.out.println(parentList);
@@ -55,6 +60,7 @@ class ParentImplTest {
     }
 
     @Test
+    @Order(2)
     void save() {
         Parent save = this.service.save(this.parent);
         System.out.println(save);
@@ -62,6 +68,7 @@ class ParentImplTest {
     }
 
     @Test
+    @Order(3)
     void read() {
         Optional<Parent> read = this.service.read(this.parent.getParentID());
         System.out.println(read);
@@ -72,6 +79,7 @@ class ParentImplTest {
     }
 
     @Test
+    @Order(4)
     void delete() {
         Parent delete = this.service.save(this.parent);
         List<Parent> employeeList = this.service.findall();

@@ -22,14 +22,15 @@ import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
 public class Parent implements Serializable {
-    @NotNull @Id private String parentID;
-    @ManyToOne(cascade = {PERSIST, MERGE})
-    @NotFound(action = NotFoundAction.IGNORE)
-    private Student studentID;
+    @Id @NotNull private String parentID;
     @NotNull private String parName;
     @NotNull private String parSurname;
     @NotNull private String cellNumber;
     @NotNull private String email;
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
+    @NotNull
+    private Student student;
 
     protected Parent() {
     }
@@ -38,23 +39,17 @@ public class Parent implements Serializable {
     //Private Constructor
     private Parent(Builder builder) {
         this.parentID = builder.parentID;
-        this.studentID = builder.student;
         this.parName = builder.parName;
         this.parSurname = builder.parSurname;
         this.cellNumber = builder.cellNumber;
         this.email = builder.email;
+        this.student = builder.student;
     }
 
     //====================================================
     //Getters
-
-
     public String getParentID() {
         return parentID;
-    }
-
-    public Student getStudent() {
-        return studentID;
     }
 
     public String getParName() {
@@ -73,51 +68,50 @@ public class Parent implements Serializable {
         return email;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Parent parent = (Parent) o;
-        return parentID.equals(parent.parentID) && studentID.equals(parent.studentID) && parName.equals(parent.parName) && parSurname.equals(parent.parSurname) && cellNumber.equals(parent.cellNumber) && email.equals(parent.email);
+        return parentID.equals(parent.parentID) && parName.equals(parent.parName) && parSurname.equals(parent.parSurname) && cellNumber.equals(parent.cellNumber) && email.equals(parent.email) && student.equals(parent.student);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(parentID, studentID, parName, parSurname, cellNumber, email);
+        return Objects.hash(parentID, parName, parSurname, cellNumber, email, student);
     }
 
     //====================================================
     // toString
+
+
     @Override
     public String toString() {
         return "Parent{" +
                 "parentID='" + parentID + '\'' +
-                ", student=" + studentID +
                 ", parName='" + parName + '\'' +
                 ", parSurname='" + parSurname + '\'' +
                 ", cellNumber='" + cellNumber + '\'' +
                 ", email='" + email + '\'' +
+                ", student=" + student +
                 '}';
     }
-
     //====================================================
     // Builder Pattern
     public static class Builder {
         private String parentID;
-
-        private Student student;
         private String parName;
         private String parSurname;
         private String cellNumber;
         private String email;
+        private Student student;
 
         public Parent.Builder setParentID(String parentID) {
             this.parentID = parentID;
-            return this;
-        }
-
-        public Parent.Builder StudentDetails(Student student) {
-            this.student = student;
             return this;
         }
 
@@ -140,13 +134,17 @@ public class Parent implements Serializable {
             this.email = email;
             return this;
         }
+        public Parent.Builder Student(Student student) {
+            this.student = student;
+            return this;
+        }
         public Builder copy(Parent parent) {
-            this.parentID = parent.getParentID();
-            this.student = parent.studentID;
-            this.parName = parent.getParName();
-            this.parSurname = parent.getParSurname();
-            this.cellNumber = parent.getCellNumber();
-            this.email = parent.getEmail();
+            this.parentID = parent.parentID;
+            this.parName = parent.parName;
+            this.parSurname = parent.parSurname;
+            this.cellNumber = parent.cellNumber;
+            this.email = parent.email;
+            this.student = parent.student;
             return this;
         }
         public Parent build() {

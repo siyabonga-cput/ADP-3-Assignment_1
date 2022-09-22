@@ -13,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentFactoryTest {
     @Test
     public void BuildWithSuccess() {
-        Student student = StudentFactory.createStudent("Jack",
+        Student student = StudentFactory.Build(
+                "2138532",
+                "Jack",
                 "Molten",
                 12,
                 "5th January 1999",
@@ -27,7 +29,9 @@ class StudentFactoryTest {
 
     @Test public void buildWithError() {
         Exception error = assertThrows(IllegalArgumentException.class, () ->
-                StudentFactory.createStudent("Jack",
+                StudentFactory.Build(
+                        null,
+                        "Jack",
                         "Molten",
                         12,
                         "5th January 1999",
@@ -37,6 +41,6 @@ class StudentFactoryTest {
                         54.6));
         String ExceptionMessage = error.getMessage();
         System.out.println(error);
-        assertSame("Address Required!", ExceptionMessage);
+        assertSame("Student ID Required!", ExceptionMessage);
     }
 }

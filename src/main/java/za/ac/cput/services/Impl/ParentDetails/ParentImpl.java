@@ -21,17 +21,14 @@ public class ParentImpl implements IParent {
     @Autowired public ParentImpl(IParentRepository repository) {
         this.repository = repository;
     }
-
     @Override
     public Parent save(Parent parent) {
         return this.repository.save(parent);
     }
-
     @Override
     public Optional<Parent> read(String s) {
         return this.repository.findById(s);
     }
-
     @Override
     public void delete(Parent parent) {
         this.repository.delete(parent);
