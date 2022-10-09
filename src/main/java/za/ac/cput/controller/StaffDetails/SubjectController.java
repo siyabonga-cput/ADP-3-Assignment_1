@@ -3,7 +3,7 @@ Author: Jayden Johnson (219086796)
 Date: 7 October 2022
 */
 
-package za.ac.cput.controller.StaffDetailes;
+package za.ac.cput.controller.StaffDetails;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

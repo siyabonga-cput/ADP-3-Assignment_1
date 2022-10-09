@@ -1,10 +1,10 @@
-/* TeacherControllerTest.java
-Test the TeacherController
-Author: Jayden Johnson (219086796)
-Date: 7 August 2022
+/* TransportControllerTest.java
+   Controller Test for the Subject Department
+   Author: Raeesah Williams (219091498)
+   Date: 07 October 2022
 */
 
-package za.ac.cput.controller.StaffDetailes;
+package za.ac.cput.controller.StudentDetails;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,44 +13,33 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import za.ac.cput.domain.Admin.Admin;
-import za.ac.cput.domain.StaffDetails.Teacher;
-import za.ac.cput.factory.Admin.AdminFactory;
-import za.ac.cput.factory.StaffDetails.TeacherFactory;
-
-
+import za.ac.cput.domain.StudentDetails.Transport;
+import za.ac.cput.factory.StudentDetails.TransportFactory;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class TeacherControllerTest {
+class TransportControllerTest
+{
     @LocalServerPort
     private int port;
     @Autowired
-    private TeacherController teacherController;
+    private TransportController Controller;
     @Autowired
     private TestRestTemplate restTemplate;
-    private Teacher teacher;
+    private Transport transport;
     private String baseUrl;
 
     @BeforeEach
-    void setUp() {
-        assertNotNull(teacherController);
-        Admin admin = AdminFactory.createAdmin(
-                "3245643",
-                "45694 3244 54324");
-        this.teacher = TeacherFactory.build(
-                "36594",
-                "Jimmy",
-                "Beast",
-                "039 359 1536",
-                "Master degree",
-                "None",
-                "Government",
-                admin);
-        this.baseUrl = "http://localhost:" + this.port + "/abc-school-management/teacher";
+    void setUp()
+    {
+        assertNotNull(Controller);
+        this.transport = TransportFactory.Build(
+                "219091498",
+                "Bus");
+        this.baseUrl = "http://localhost:" + this.port + "/abc-school-management/student";
     }
 
     @Test
@@ -58,8 +47,8 @@ class TeacherControllerTest {
     void findAll() {
         String url = baseUrl + "/all";
         System.out.println(url);
-        ResponseEntity<Teacher[]> response =
-                this.restTemplate.getForEntity(url, Teacher[].class);
+        ResponseEntity<Transport[]> response =
+                this.restTemplate.getForEntity(url, Transport[].class);
         System.out.println(Arrays.asList(response.getBody()));
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
@@ -72,7 +61,7 @@ class TeacherControllerTest {
     void save() {
         String url = baseUrl + "/save";
         System.out.println(url);
-        ResponseEntity<Teacher> response = this.restTemplate.postForEntity(url, this.teacher, Teacher.class);
+        ResponseEntity<Transport> response = this.restTemplate.postForEntity(url, this.transport, Transport.class);
         System.out.println(response);
         assertAll (
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
@@ -83,9 +72,9 @@ class TeacherControllerTest {
     @Test
     @Order(3)
     void read() {
-        String url = baseUrl + "/read/" + this.teacher.getTeacherID();
+        String url = baseUrl + "/read/" + this.transport.getTransportID();
         System.out.println(url);
-        ResponseEntity<Teacher> response = this.restTemplate.getForEntity(url, Teacher.class);
+        ResponseEntity<Transport> response = this.restTemplate.getForEntity(url, Transport.class);
         System.out.println(response);
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
@@ -96,9 +85,8 @@ class TeacherControllerTest {
     @Test
     @Order(4)
     void delete() {
-        String url = baseUrl + "/delete/" + this.teacher.getTeacherID();
+        String url = baseUrl + "/delete/" + this.transport.getTransportID();
         this.restTemplate.delete(url);
-        System.out.println("Deleted");
+        System.out.println("Record Deleted");
     }
-
 }
