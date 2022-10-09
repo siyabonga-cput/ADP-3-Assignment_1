@@ -1,102 +1,95 @@
-///* Transport.java
-//   Entity for the Transport
-//   Author: Raeesah Williams (219091498)
-//   Date: 30 March 2022
-//*/
-//
-//package za.ac.cput.domain.StudentDetails;
-//
-//public class Transport
-//{
-//    // constructors
-//    public String transportID;
-//    public String studentID;
-//    public String suppStaffID;
-//    private String typeOfTransport;
-//
-//    //getters and setters
-//
-//    public String getTransportID()
-//    {
-//        return transportID;
-//    }
-//
-//    public String getStudentID()
-//    {
-//        return studentID;
-//    }
-//
-//    public String getSuppStaffID()
-//    {
-//        return suppStaffID;
-//    }
-//
-//    public String getTypeOfTransport()
-//    {
-//        return typeOfTransport;
-//    }
-//
-//    // toString
-//    @Override
-//    public String toString() {
-//        return "Transport{" +
-//                "transportID=" + transportID +
-//                ", studentID=" + studentID +
-//                ", suppStaffID=" + suppStaffID +
-//                ", typeOfTransport='" + typeOfTransport + '\'' +
-//                '}';
-//    }
-//
-//    // private constructors
-//    private Transport (Builder builder)
-//    {
-//        this.transportID = builder.transportID;
-//        this.studentID = builder.studentID;
-//        this.suppStaffID = builder.suppStaffID;
-//        this.typeOfTransport = builder.typeOfTransport;
-//    }
-//
-//    // builder pattern
-//    public static class Builder
-//    {
-//        private String transportID;
-//        private String studentID;
-//        private String suppStaffID;
-//        private String typeOfTransport;
-//
-//        public Builder setTransportID(String transportID) {
-//            this.transportID = transportID;
-//            return this;
-//        }
-//
-//        public Transport.Builder setStudentID(String studentID) {
-//            this.studentID = studentID;
-//            return this;
-//        }
-//
-//        public Transport.Builder setSuppStaffID(String suppStaffID) {
-//            this.suppStaffID = suppStaffID;
-//            return this;
-//        }
-//
-//        public Transport.Builder setTypeOfTransport(String typeOfTransport) {
-//            this.typeOfTransport = typeOfTransport;
-//            return this;
-//        }
-//
-//        //builder copy
-//        public Builder copy(Transport transport)
-//        {
-//            this.transportID = transport.getTransportID();
-//            this.studentID = transport.getStudentID();
-//            this.suppStaffID = transport.getSuppStaffID();
-//            this.typeOfTransport = transport.getTypeOfTransport();
-//            return this;
-//        }
-//
-//        public Transport build()
-//        {
-//            return new Transport(this);
-//        }
-//    }
-//}
+/* Transport.java
+   Domain Entity for the Transport
+   Author: Raeesah Williams (219091498)
+   Date: 30 March 2022
+*/
+
+package za.ac.cput.domain.StudentDetails;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
+
+@Entity
+public class Transport implements Serializable
+{
+    //Constructors
+    @Id
+    @NotNull
+    public String transportID;
+    @NotNull
+    private String typeOfTransport;
+
+    protected Transport() {
+    }
+
+    private Transport (Builder builder)
+    {
+        this.transportID = builder.transportID;
+        this.typeOfTransport = builder.typeOfTransport;
+    }
+
+    //Getters
+    public String getTransportID()
+    {
+        return transportID;
+    }
+    public String getTypeOfTransport()
+    {
+        return typeOfTransport;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport transport = (Transport) o;
+        return transportID.equals(transport.transportID) && typeOfTransport.equals(transport.typeOfTransport);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(transportID, typeOfTransport);
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return "Transport{" +
+                "transportID=" + transportID +
+                ", typeOfTransport='" + typeOfTransport + '\'' +
+                '}';
+    }
+
+    //Builder pattern
+    public static class Builder
+    {
+        private String transportID;
+        private String typeOfTransport;
+
+        public Transport.Builder TransportID(String transportID) {
+            this.transportID = transportID;
+            return this;
+        }
+
+        public Transport.Builder TypeOfTransport(String typeOfTransport) {
+            this.typeOfTransport = typeOfTransport;
+            return this;
+        }
+
+        //builder copy
+        public Builder copy(Transport transport)
+        {
+            this.transportID = transport.getTransportID();
+            this.typeOfTransport = transport.getTypeOfTransport();
+            return this;
+        }
+
+        public Transport build()
+        {
+            return new Transport(this);
+        }
+    }
+}
