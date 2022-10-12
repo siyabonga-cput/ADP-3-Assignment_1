@@ -24,6 +24,11 @@ public class AdminImpl implements IAdmin {
     }
 
     @Override
+    public List<Admin> findAll() {
+        return this.repository.findAll();
+    }
+
+    @Override
     public Admin save(Admin admin) {
         return this.repository.save(admin);
     }
