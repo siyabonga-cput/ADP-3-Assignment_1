@@ -7,4 +7,6 @@ import za.ac.cput.services.IService;
 import java.util.List;
 public interface IAdmin extends IService<Admin, String> {
     List<Admin> findall();
+
+    List<Admin> findAll();
 }
