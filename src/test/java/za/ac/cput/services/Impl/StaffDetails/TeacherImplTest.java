@@ -52,7 +52,7 @@ class TeacherImplTest {
     @Test
     @Order(1)
     void findAll() {
-        List<Teacher> teacherList = this.services.findall();
+        List<Teacher> teacherList = this.services.findAll();
         System.out.println(teacherList);
         assertEquals(1,teacherList.size());
     }
@@ -77,7 +77,7 @@ class TeacherImplTest {
     @Order(4)
     void delete() {
         Teacher delete = this.services.save(this.teacher);
-        List<Teacher> teacherList = this.services.findall();
+        List<Teacher> teacherList = this.services.findAll();
         assertEquals(1,teacherList.size());
         System.out.println("Deleted");
         this.services.delete(delete);

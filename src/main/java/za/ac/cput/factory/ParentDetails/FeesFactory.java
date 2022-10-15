@@ -13,7 +13,7 @@ import za.ac.cput.domain.ParentDetails.Parent;
 import za.ac.cput.util.Helper;
 
 public class FeesFactory {
-    public static Fees build (String feeID, Student student, Admin admin, Parent parent, String amount) {
+    public static Fees build (String feeID, Student student, Admin admin, Parent parent, double amount) {
 
         Helper.isEmptyOrNull("feeID");
         Helper.isEmptyOrNull("studentID");
@@ -22,16 +22,14 @@ public class FeesFactory {
         Helper.isEmptyOrNull("amount");
 
         Helper.CheckStringParm("feeID", feeID);
-        Helper.CheckStringParm("amount", amount);
 
         return new Fees.Builder()
                 .setfeeID(feeID)
-                .Student(student)
-                .Admin(admin)
-                .Parent(parent)
+                .setStudentID(student)
+                .setAdminID(admin)
+                .setParentID(parent)
                 .setAmount(amount)
                 .build();
-
     }
 
 }

@@ -3,7 +3,7 @@ package za.ac.cput.services.Impl.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Admin.Admin;
-import za.ac.cput.repository.AdminInterface.IAdminRepository;
+import za.ac.cput.repository.AdminRepo.IAdminRepository;
 import za.ac.cput.services.Interface.Admin.IAdmin;
 
 import java.util.List;

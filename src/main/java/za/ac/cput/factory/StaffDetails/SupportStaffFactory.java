@@ -39,9 +39,7 @@ public class SupportStaffFactory {
                 .setImportHealthInfo(importHealthInfo)
                 .setQualification(qualification)
                 .setTypeOfWork(typeOfWork)
-                .Admin(admin)
+                .setAdminID(admin)
                 .build();
-
     }
-
 }

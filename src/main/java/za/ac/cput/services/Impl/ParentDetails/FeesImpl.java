@@ -1,9 +1,3 @@
-/*
-FeesImpl.java
-Enable services
-Author: Tiffany Kiwiets (219322732)
-*/
-
 package za.ac.cput.services.Impl.ParentDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +13,27 @@ import java.util.Optional;
 public class FeesImpl implements IFees {
     private final IFeesRepository repository;
 
-    @Autowired public FeesImpl(IFeesRepository repository) { this.repository = repository; }
+    @Autowired public FeesImpl(IFeesRepository repository){
+        this.repository = repository;
+    }
 
     @Override
-    public List <Fees> findall() { return this.repository.findAll(); }
+    public Fees save(Fees fees) {
+        return this.repository.save(fees);
+    }
 
     @Override
-    public Fees save(Fees fees) { return this.repository.save(fees); }
+    public Optional<Fees> read(String id) {
+        return this.repository.findById(id);
+    }
 
     @Override
-    public Optional<Fees> read(String s) { return this.repository.findById(s); }
+    public void delete(Fees fees) {
+        this.repository.delete(fees);
+    }
 
     @Override
-    public void delete(Fees fees) { this.repository.findAll(); }
+    public List<Fees> findAll() {
+        return this.repository.findAll();
+    }
 }

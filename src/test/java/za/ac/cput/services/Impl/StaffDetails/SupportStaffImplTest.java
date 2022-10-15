@@ -1,15 +1,11 @@
-/*
-SupportStaffImplTest.java
-Test for SupportStaffImpl
-Author: Tiffany Kiwiets (219322732)
- */
-
-package za.ac.cput.controller.Impl.StaffDetails;
+package za.ac.cput.services.Impl.StaffDetails;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.domain.Admin.Admin;
 import za.ac.cput.domain.StaffDetails.SupportStaff;
+import za.ac.cput.factory.Admin.AdminFactory;
 import za.ac.cput.factory.StaffDetails.SupportStaffFactory;
 import za.ac.cput.services.Interface.StaffDetails.ISupportStaff;
 
@@ -17,31 +13,30 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SupportStaffImplTest {
+    private Admin admin;
     private SupportStaff supportStaff;
 
-    @Autowired private ISupportStaff services;
+    @Autowired private ISupportStaff service;
+
     @BeforeEach
     void setUp() {
-        Admin admin = AdminFactory.createAdmin(
-                "6325984",
-                "48569 1266 75896");
-
+        this.admin = AdminFactory.createAdmin(
+                "3245643",
+                "45696 3244 54324");
         this.supportStaff = SupportStaffFactory.build(
                 "635941258",
                 "Julius",
                 "Jacob",
-                "0856911259",
+                "08569112567",
                 "Allegic to bees",
                 "Degree in sport management",
                 "Head of sports management",
                 admin);
-
-        SupportStaff save = this.services.save(this.supportStaff);
+        SupportStaff save = this.service.save(this.supportStaff);
         assertAll(
                 () -> assertNotNull(save),
                 () -> assertEquals(this.supportStaff, save)
@@ -50,16 +45,16 @@ class SupportStaffImplTest {
 
     @Test
     @Order(1)
-    void findAll() {
-        List<SupportStaff> supportStaffList = this.services.findall();
-        System.out.println(supportStaffList);
-        assertEquals(1, supportStaffList.size());
+    void findall() {
+        List<SupportStaff> supportStaffsist = this.service.findall();
+        System.out.println(supportStaffsist);
+        assertEquals(1,supportStaffsist.size());
     }
 
     @Test
     @Order(2)
     void save() {
-        SupportStaff save = this.services.save(this.supportStaff);
+        SupportStaff save = this.service.save(this.supportStaff);
         System.out.println(save);
         assertNotNull(save);
     }
@@ -67,7 +62,7 @@ class SupportStaffImplTest {
     @Test
     @Order(3)
     void read() {
-        Optional<SupportStaff> read = this.services.read(this.supportStaff.getSuppStaffID());
+        Optional<SupportStaff> read = this.service.read(this.supportStaff.getSuppStaffID());
         System.out.println(read);
         assertAll(
                 () -> assertTrue(read.isPresent()),
@@ -77,13 +72,11 @@ class SupportStaffImplTest {
 
     @Test
     @Order(4)
-    void delete(0) {
-        SupportStaff delete = this.services.save(this.supportStaff);
-        List<SupportStaff> supportStaffList = this.services.findall();
-        assertEquals(1, supportStaffList());
-        System.out.println("Deleted");
-        this.services.delete(delete);
+    void delete() {
+        SupportStaff delete = this.service.save(this.supportStaff);
+        List<SupportStaff> supportStaffsList = this.service.findall();
+        assertEquals(1,supportStaffsList.size());
+        System.out.println("Deleted! ");
+        this.service.delete(delete);
     }
-
 }
-

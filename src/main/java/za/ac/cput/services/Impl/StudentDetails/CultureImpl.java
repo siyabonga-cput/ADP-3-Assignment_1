@@ -24,18 +24,19 @@ public class CultureImpl implements ICulture {
         this.repository = repository;
     }
 
+    @Override
     public List<Culture> findAll(){
         return this.repository.findAll();
     }
-
+    @Override
     public Culture save(Culture culture){
         return this.repository.save(culture);
     }
-
+    @Override
     public Optional<Culture> read (String id){
         return this.repository.findById(id);
     }
-
+    @Override
     public void delete(Culture culture){
         this.repository.delete(culture);
     }

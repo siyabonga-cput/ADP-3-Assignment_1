@@ -51,6 +51,7 @@ class ParentImplTest {
                 () -> assertEquals(this.parent, save)
         );
     }
+
     @Test
     @Order(1)
     void findAll() {

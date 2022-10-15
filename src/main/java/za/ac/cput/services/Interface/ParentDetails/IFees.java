@@ -11,6 +11,6 @@ import za.ac.cput.services.IService;
 
 import java.util.List;
 
-public interface IFees extends IService<Fees, String> {
-    List<Fees> findall();
+public interface IFees extends IService <Fees, String> {
+    List<Fees> findAll();
 }

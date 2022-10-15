@@ -8,8 +8,8 @@ package za.ac.cput.factory.StaffDetails;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Admin.Admin;
-import za.ac.cput.Domain.StaffDetails.SupportStaff;
 import za.ac.cput.domain.StaffDetails.SupportStaff;
+import za.ac.cput.factory.Admin.AdminFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,14 +24,13 @@ class SupportStaffFactoryTest {
                 "635941258",
                 "Julius",
                 "Jacob",
-                "0856911259",
+                "08569112567",
                 "Allegic to bees",
                 "Degree in sport management",
                 "Head of sports management",
                 admin);
         assertNotNull(supportStaff);
         System.out.println(supportStaff);
-
     }
 
     @Test
@@ -42,10 +41,10 @@ class SupportStaffFactoryTest {
 
         Exception exception = assertThrows(IllegalArgumentException.class,
                 () -> SupportStaffFactory.build(
-                "635941258",
+                null,
                 "Julius",
                 "Jacob",
-                "0856911259",
+                "08569112567",
                 "Allegic to bees",
                 "Degree in sport management",
                 "Head of sports management",
@@ -54,7 +53,5 @@ class SupportStaffFactoryTest {
         System.out.println(exceptionMessage);
         assertSame("ID is required!", exceptionMessage);
 
-
     }
-
 }

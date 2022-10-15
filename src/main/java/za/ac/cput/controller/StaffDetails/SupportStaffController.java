@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/abc-achool-management/fees")
+@RequestMapping("/abc-school-management/supportStaff")
 @Slf4j
 public class SupportStaffController {
     private final ISupportStaff iSupportStaffService;
@@ -34,14 +34,14 @@ public class SupportStaffController {
         return ResponseEntity.ok(save);
     }
 
-    @GetMapping("read/{suppStaffID")
+    @GetMapping("read/{suppStaffID}")
     public  ResponseEntity<SupportStaff> read(@PathVariable String suppStaffID) {
         log.info("Read Request: {}", suppStaffID);
         SupportStaff read = this.iSupportStaffService.read(suppStaffID).get();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(read);
     }
 
-    @DeleteMapping("delete/{suppStaffID")
+    @DeleteMapping("delete/{suppStaffID}")
     public ResponseEntity<Void> delete(@PathVariable String suppStaffID) {
         log.info("Delete Request {}", suppStaffID);
         return ResponseEntity.noContent().build();
@@ -49,11 +49,7 @@ public class SupportStaffController {
 
     @GetMapping("/all")
     public ResponseEntity <List<SupportStaff>> findAll() {
-        List<SupportStaff> supportStaff = this.iSupportStaffService.findAll();
+        List<SupportStaff> supportStaff = this.iSupportStaffService.findall();
         return ResponseEntity.ok(supportStaff);
     }
-
-
-
-
 }

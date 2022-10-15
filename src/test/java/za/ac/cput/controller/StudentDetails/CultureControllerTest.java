@@ -6,27 +6,28 @@
 
 package za.ac.cput.controller.StudentDetails;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.*;
 import za.ac.cput.domain.StudentDetails.Culture;
 import za.ac.cput.domain.StudentDetails.Student;
 import za.ac.cput.factory.StudentDetails.CultureFactory;
 import za.ac.cput.factory.StudentDetails.StudentFactory;
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CultureControllerTest {
+    public static String SECURITY_USERNAME= "user";
+    public static String SECURITY_PASSWORD= "password";
     @LocalServerPort
     private int port;
-
     @Autowired CultureController controller;
     @Autowired TestRestTemplate restTemplate;
     private Culture culture;
@@ -36,24 +37,79 @@ class CultureControllerTest {
     @BeforeEach
     void setUp() {
         assertNotNull(controller);
-        this.culture = CultureFactory.build("01","Dance", student.getStudentID());
-        this.student = StudentFactory.Build("2138532", "Jack", "Molten", 12, "5th January 1999", 3345, "14 Hope Street Cape Town", "None", 54.6);
-        this.baseUrl = "http://localhost:" + this.port + "/abc-school-management/student";
-    }
+        this.student = StudentFactory.Build(
+                "2138532",
+                "Jack",
+                "Molten",
+                12,
+                "5th January 1999",
+                3345,
+                "14 Hope Street Cape Town",
+                "None",
+                54.6);
+        this.culture = CultureFactory.build("01",
+                "Dance",
+                student);
 
-    @Test
-    void save() {
+        this.baseUrl = "http://localhost:" + this.port + "/abc-school-management/culture";
     }
-
     @Test
-    void read() {
-    }
-
-    @Test
-    void delete() {
-    }
-
-    @Test
+    @Order(1)
     void findAll() {
+        String url = baseUrl + "/all";
+        System.out.println(url);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<Culture[]> entity = new HttpEntity<>(null,headers);
+        ResponseEntity<Culture[]> response =
+                restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                        .exchange(url, HttpMethod.GET,entity, Culture[].class);
+        System.out.println("Show all: ");
+        System.out.println(response);
+        System.out.println(response.getBody());
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertTrue(response.getBody().length == 1)
+        );
+//        ResponseEntity<Culture[]> response =
+//                this.restTemplate.getForEntity(url, Culture[].class);
+//        System.out.println(Arrays.asList(response.getBody()));
+//        assertAll(
+//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+//                () -> assertTrue(response.getBody().length == 0 )
+//        );
+    }
+
+    @Test
+    @Order(2)
+    void save() {
+        String url = baseUrl + "/save";
+        System.out.println(url);
+        ResponseEntity<Culture> response = this.restTemplate.postForEntity(url, this.culture, Culture.class);
+        System.out.println(response);
+        assertAll (
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
+        );
+    }
+
+    @Test
+    @Order(3)
+    void read() {
+        String url = baseUrl + "/read/" + this.culture.getCultureId();
+        System.out.println(url);
+        ResponseEntity<Culture> response = this.restTemplate.getForEntity(url, Culture.class);
+        System.out.println(response);
+        assertAll(
+                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+                () -> assertNotNull(response.getBody())
+        );
+    }
+
+    @Test
+    @Order(4)
+    void delete() {
+        String url = baseUrl + "/delete/" + this.culture.getCultureId();
+        this.restTemplate.delete(url);
+        System.out.println("Deleted Record! ");
     }
 }

@@ -22,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudentImplTest {
     private Student student;
-    @Autowired private IStudent service;
+    @Autowired
+    private IStudent service;
     @BeforeEach
     void setUp() {
         this.student = StudentFactory.Build(

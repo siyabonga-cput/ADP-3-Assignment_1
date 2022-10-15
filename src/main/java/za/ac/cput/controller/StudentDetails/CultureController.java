@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/abc-school-management/student")
+@RequestMapping("/abc-school-management/culture")
 @Slf4j
 public class CultureController {
 
@@ -30,7 +30,7 @@ public class CultureController {
         this.iCulture = iCulture;
     }
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public ResponseEntity<Culture> save (@Valid @RequestBody Culture culture){
         log.info("Save request: {}", culture);
         Culture save = iCulture.save(culture);
@@ -51,11 +51,9 @@ public class CultureController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity<List<Culture>>findAll(){
         List<Culture> culture = this.iCulture.findAll();
         return ResponseEntity.ok(culture);
     }
-
-
 }

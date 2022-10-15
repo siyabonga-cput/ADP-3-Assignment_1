@@ -43,4 +43,3 @@ public class StudentImpl implements IStudent {
         return this.repository.findAll();
     }
 }
-
