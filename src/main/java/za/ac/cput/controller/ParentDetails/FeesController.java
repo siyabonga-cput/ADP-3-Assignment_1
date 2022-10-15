@@ -18,17 +18,20 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping"/abc-school-management/fees")
+@RequestMapping("/abc-school-management/fees")
 @Slf4j
 public class FeesController {
     private final IFees iFeesService;
 
     @Autowired
-    public SupportStaffController(IFees iFeesService) { this.iFeesService = iFeesService; }
+    public FeesController(IFees iFeesService) {
+        this.iFeesService = iFeesService;
+    }
 
     @PostMapping("/save")
     public ResponseEntity<Fees> save(@Valid @RequestBody Fees fees) {
         log.info("Save request: {}", fees);
+        System.out.println(String.format("Save request: ",fees));
         Fees save = iFeesService.save(fees);
         return ResponseEntity.ok(save);
     }
@@ -51,6 +54,4 @@ public class FeesController {
         List<Fees> fees = this.iFeesService.findAll();
         return ResponseEntity.ok(fees);
     }
-
-
 }

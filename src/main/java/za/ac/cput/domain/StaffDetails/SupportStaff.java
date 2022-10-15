@@ -6,23 +6,31 @@ Author: Tiffany Kiwiets (219322732)
 
 package za.ac.cput.domain.StaffDetails;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import za.ac.cput.domain.Admin.Admin;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
 
 
 @Entity
 public class SupportStaff implements Serializable {
     @NotNull @Id
     private String suppStaffID;
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Admin adminID;
     @NotNull private String suppStaffName;
     @NotNull private String suppStaffSurname;
-    @NotNull private int cellNumber;
+    @NotNull private String cellNumber;
     @NotNull private String importHealthInfo;
     @NotNull private String qualification;
     @NotNull private String typeOfWork;
@@ -43,30 +51,44 @@ public class SupportStaff implements Serializable {
         this.typeOfWork = builder.typeOfWork;
     }
 
-    public String getSuppStaffID() { return suppStaffID; }
+    public String getSuppStaffID() {
+        return suppStaffID;
+    }
 
-    public int getAdminID() { return adminID; }
+    public Admin getAdminID() {
+        return adminID;
+    }
 
-    public String getSuppStaffName() { return suppStaffName; }
+    public String getSuppStaffName() {
+        return suppStaffName;
+    }
 
-    public String getSuppStaffSurname() { return suppStaffSurname; }
+    public String getSuppStaffSurname() {
+        return suppStaffSurname;
+    }
 
-    public int getCellNumber() { return cellNumber; }
+    public String getCellNumber() {
+        return cellNumber;
+    }
 
-    public String getImportHealthInfo() { return importHealthInfo; }
+    public String getImportHealthInfo() {
+        return importHealthInfo;
+    }
 
-    public String getQualification() { return qualification; }
+    public String getQualification() {
+        return qualification;
+    }
 
-    public String getTypeOfWork() { return typeOfWork; }
+    public String getTypeOfWork() {
+        return typeOfWork;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SupportStaff supportStaff = (SupportStaff) o;
-        return suppStaffID.equals(supportStaff.suppStaffID) && adminID.equals(supportStaff.adminID) && suppStaffName.equals(supportStaff.suppStaffName)
-                && suppStaffSurname.equals(supportStaff.suppStaffSurname) && cellNumber.equals(supportStaff.cellNumber) && importHealthInfo.equals(supportStaff.importHealthInfo)
-                && qualification.equals(supportStaff.qualification) && typeOfWork.equals(supportStaff.typeOfWork);
+        SupportStaff that = (SupportStaff) o;
+        return suppStaffID.equals(that.suppStaffID) && adminID.equals(that.adminID) && suppStaffName.equals(that.suppStaffName) && suppStaffSurname.equals(that.suppStaffSurname) && cellNumber.equals(that.cellNumber) && importHealthInfo.equals(that.importHealthInfo) && qualification.equals(that.qualification) && typeOfWork.equals(that.typeOfWork);
     }
 
     @Override
@@ -77,11 +99,11 @@ public class SupportStaff implements Serializable {
     @Override
     public String toString() {
         return "SupportStaff{" +
-                "suppStaffID=" + suppStaffID +
+                "suppStaffID='" + suppStaffID + '\'' +
                 ", adminID=" + adminID +
                 ", suppStaffName='" + suppStaffName + '\'' +
                 ", suppStaffSurname='" + suppStaffSurname + '\'' +
-                ", cellNumber=" + cellNumber +
+                ", cellNumber='" + cellNumber + '\'' +
                 ", importHealthInfo='" + importHealthInfo + '\'' +
                 ", qualification='" + qualification + '\'' +
                 ", typeOfWork='" + typeOfWork + '\'' +
@@ -90,10 +112,10 @@ public class SupportStaff implements Serializable {
 
     public static class Builder {
         private String suppStaffID;
-        private int adminID;
+        private Admin adminID;
         private String suppStaffName;
         private String suppStaffSurname;
-        private int cellNumber;
+        private String cellNumber;
         private String importHealthInfo;
         private String qualification;
         private String typeOfWork;
@@ -103,7 +125,7 @@ public class SupportStaff implements Serializable {
             return this;
         }
 
-        public Builder setAdminID(int adminID) {
+        public Builder setAdminID(Admin adminID) {
             this.adminID = adminID;
             return this;
         }
@@ -118,7 +140,7 @@ public class SupportStaff implements Serializable {
             return  this;
         }
 
-        public Builder setCellNumber(int cellNumber) {
+        public Builder setCellNumber(String cellNumber) {
             this.cellNumber = cellNumber;
             return this;
         }

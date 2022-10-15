@@ -8,35 +8,42 @@ package za.ac.cput.domain.StudentDetails;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-
 import javax.persistence.*;
 import javax.security.auth.Subject;
 import javax.validation.constraints.NotNull;
-
+import java.io.Serializable;
+import java.util.Objects;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 
 
 @Entity
-public class StudentPrestige {
+public class StudentPrestige implements Serializable {
     @Id
-    @Column(name = "prestige_id")
+//    @Column(name = "prestige_id")
+    @NotNull
     private String prestigeId;
     @NotNull private String prestigeType;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
+//    @ManyToOne
+//    @JoinColumn(name = "student_id")
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Student student;
 
-    @ManyToOne
-    @JoinColumn (name = "sport_id")
+//    @ManyToOne
+//    @JoinColumn (name = "sport_id")
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Sport sport;
 
-    @ManyToOne
-    @JoinColumn (name = "culture_id")
+//    @ManyToOne
+//    @JoinColumn (name = "culture_id")
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Culture culture;
 
-    //@ManyToOne(cascade = {PERSIST, MERGE})
+//    @ManyToOne(cascade = {PERSIST, MERGE})
     @NotFound(action = NotFoundAction.IGNORE)
     private Subject subject;
 
@@ -80,7 +87,21 @@ public class StudentPrestige {
         return subject;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentPrestige that = (StudentPrestige) o;
+        return Objects.equals(prestigeId, that.prestigeId) && Objects.equals(prestigeType, that.prestigeType) && Objects.equals(student, that.student) && Objects.equals(sport, that.sport) && Objects.equals(culture, that.culture) && Objects.equals(subject, that.subject);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prestigeId, prestigeType, student, sport, culture, subject);
+    }
+
     //toString====
+
 
     @Override
     public String toString() {

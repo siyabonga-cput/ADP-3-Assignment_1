@@ -9,6 +9,7 @@ package za.ac.cput.domain.ParentDetails;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import za.ac.cput.domain.Admin.Admin;
 import za.ac.cput.domain.StudentDetails.Student;
 
 import javax.persistence.Entity;
@@ -29,11 +30,14 @@ public class Fees implements Serializable {
     @ManyToOne(cascade = {PERSIST, MERGE})
     @NotFound(action = NotFoundAction.IGNORE)
     private Student studentID;
+    @ManyToOne(cascade = {PERSIST, MERGE})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Admin adminID;
     @ManyToOne(cascade = {PERSIST, MERGE})
     @NotFound(action = NotFoundAction.IGNORE)
     private Parent parentID;
-    @NotNull private double amount;
+    @NotNull
+    private double amount;
 
     protected Fees() {
     }
@@ -42,7 +46,7 @@ public class Fees implements Serializable {
     private Fees(Builder builder) {
         this.feeID = builder.feeID;
         this.studentID = builder.studentID;
-        this.adminID = builder.adminID;
+        this.adminID = builder.admin;
         this.parentID = builder.parentID;
         this.amount = builder.amount;
     }
@@ -56,6 +60,10 @@ public class Fees implements Serializable {
         return studentID;
     }
 
+    public Admin getAdminID() {
+        return adminID;
+    }
+
     public Parent getParentID() {
         return parentID;
     }
@@ -64,24 +72,14 @@ public class Fees implements Serializable {
         return amount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Fees fees = (Fees) o;
-        return Double.compare(fees.amount, amount) == 0 && feeID.equals(fees.feeID) && studentID.equals(fees.studentID) && parentID.equals(fees.parentID);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(feeID, studentID, parentID, amount);
-    }
 
     @Override
     public String toString() {
         return "Fees{" +
                 "feeID='" + feeID + '\'' +
                 ", studentID=" + studentID +
+                ", adminID=" + adminID +
                 ", parentID=" + parentID +
                 ", amount=" + amount +
                 '}';
@@ -90,7 +88,7 @@ public class Fees implements Serializable {
     public static class Builder {
         private String feeID;
         private Student studentID;
-        private int adminID;
+        private Admin admin;
         private Parent parentID;
         private double amount;
 
@@ -104,8 +102,8 @@ public class Fees implements Serializable {
             return this;
         }
 
-        public Builder setAdminID(int adminID) {
-            this.adminID = adminID;
+        public Builder setAdminID(Admin adminID) {
+            this.admin = adminID;
             return this;
         }
 
@@ -123,15 +121,12 @@ public class Fees implements Serializable {
         public Builder copy(Fees fees) {
             this.feeID = fees.getFeeID();
             this.studentID = fees.getStudentID();
-            this.adminID = fees.getadminID();
+            this.admin = fees.getAdminID();
             this.parentID = fees.getParentID();
             this.amount = fees.getAmount();
             return this;
         }
 
         public Fees build() { return new Fees( this); }
-
     }
-
-
 }

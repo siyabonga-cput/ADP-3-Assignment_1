@@ -45,9 +45,8 @@ class SubjectFactoryTest {
                 "None",
                 54.6);
 
-        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.createSubjectDepartment(
-                teacher,
-                "Pure Maths");
+        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.Build("219091498",
+                "Mathematics");
 
         Subject subject = SubjectFactory.build(
                 "36259",
@@ -88,9 +87,8 @@ class SubjectFactoryTest {
                 "None",
                 54.6);
 
-        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.createSubjectDepartment(
-                teacher,
-                "Pure Maths");
+        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.Build("219091498",
+                "Mathematics");
 
         Exception exception = assertThrows(IllegalArgumentException.class,
                 () -> SubjectFactory.build(

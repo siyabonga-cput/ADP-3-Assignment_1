@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import za.ac.cput.domain.Admin.Admin;
 import za.ac.cput.domain.StaffDetails.Teacher;
 import za.ac.cput.factory.Admin.AdminFactory;
@@ -26,6 +25,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TeacherControllerTest {
+    public static String SECURITY_USERNAME= "user";
+    public static String SECURITY_PASSWORD= "password";
     @LocalServerPort
     private int port;
     @Autowired
@@ -58,13 +59,25 @@ class TeacherControllerTest {
     void findAll() {
         String url = baseUrl + "/all";
         System.out.println(url);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<Teacher[]> entity = new HttpEntity<>(null,headers);
         ResponseEntity<Teacher[]> response =
-                this.restTemplate.getForEntity(url, Teacher[].class);
-        System.out.println(Arrays.asList(response.getBody()));
+                restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                        .exchange(url, HttpMethod.GET,entity, Teacher[].class);
+        System.out.println("Show all: ");
+        System.out.println(response);
+        System.out.println(response.getBody());
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-                () -> assertTrue(response.getBody().length == 0 )
+                () -> assertTrue(response.getBody().length == 0)
         );
+//        ResponseEntity<Teacher[]> response =
+//                this.restTemplate.getForEntity(url, Teacher[].class);
+//        System.out.println(Arrays.asList(response.getBody()));
+//        assertAll(
+//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+//                () -> assertTrue(response.getBody().length == 0 )
+//        );
     }
 
     @Test

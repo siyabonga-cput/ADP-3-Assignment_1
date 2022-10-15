@@ -2,6 +2,7 @@ package za.ac.cput.domain.StudentDetails;
 
 import com.sun.istack.NotNull;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -61,7 +62,6 @@ public class Student implements Serializable {
     public int getGrade() {
         return grade;
     }
-
 
     public String getDob() {
         return Dob;

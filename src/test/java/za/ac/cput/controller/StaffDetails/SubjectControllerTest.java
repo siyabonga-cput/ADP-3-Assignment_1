@@ -4,15 +4,14 @@ Author: Jayden Johnson (219086796)
 Date: 7 August 2022
 */
 
-package za.ac.cput.controller.StaffDetailes;
+package za.ac.cput.controller.StaffDetails;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import za.ac.cput.domain.Admin.Admin;
 import za.ac.cput.domain.StaffDetails.Subject;
 import za.ac.cput.domain.StaffDetails.SubjectDepartment;
@@ -31,6 +30,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SubjectControllerTest {
+    public static String SECURITY_USERNAME= "user";
+    public static String SECURITY_PASSWORD= "password";
     @LocalServerPort
     private int port;
     @Autowired
@@ -65,9 +66,9 @@ class SubjectControllerTest {
                 "14 Hope Street Cape Town",
                 "None",
                 54.6);
-        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.createSubjectDepartment(
-                teacher,
-                "Pure Maths");
+        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.Build(
+                "219091498",
+                "Mathematics");
         this.subject = SubjectFactory.build(
                 "36259",
                 "Math",
@@ -84,13 +85,25 @@ class SubjectControllerTest {
     void findAll() {
         String url = baseUrl + "/all";
         System.out.println(url);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<Subject[]> entity = new HttpEntity<>(null,headers);
         ResponseEntity<Subject[]> response =
-                this.restTemplate.getForEntity(url, Subject[].class);
-        System.out.println(Arrays.asList(response.getBody()));
+                restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                        .exchange(url, HttpMethod.GET,entity, Subject[].class);
+        System.out.println("Show all: ");
+        System.out.println(response);
+        System.out.println(response.getBody());
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-                () -> assertTrue(response.getBody().length == 0 )
+                () -> assertTrue(response.getBody().length == 1)
         );
+//        ResponseEntity<Subject[]> response =
+//                this.restTemplate.getForEntity(url, Subject[].class);
+//        System.out.println(Arrays.asList(response.getBody()));
+//        assertAll(
+//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+//                () -> assertTrue(response.getBody().length == 0 )
+//        );
     }
 
     @Test

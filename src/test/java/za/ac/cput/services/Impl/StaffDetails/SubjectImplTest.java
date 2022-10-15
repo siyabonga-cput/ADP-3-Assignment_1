@@ -6,9 +6,7 @@ Date: 7 August 2022
 
 package za.ac.cput.services.Impl.StaffDetails;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Admin.Admin;
@@ -30,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SubjectImplTest {
     private Subject subject;
     @Autowired
@@ -58,9 +57,9 @@ class SubjectImplTest {
                 "14 Hope Street Cape Town",
                 "None",
                 54.6);
-        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.createSubjectDepartment(
-                teacher,
-                "Pure Maths");
+        SubjectDepartment subjectDepartment = SubjectDepartmentFactory.Build(
+                "219091498",
+                "Mathematics");
         this.subject = SubjectFactory.build(
                 "36259",
                 "Math",
@@ -79,7 +78,7 @@ class SubjectImplTest {
     @Test
     @Order(1)
     void findAll() {
-        List<Subject> subjectList = this.service.findall();
+        List<Subject> subjectList = this.service.findAll();
         System.out.println(subjectList);
         assertEquals(1,subjectList.size());
     }
@@ -104,7 +103,7 @@ class SubjectImplTest {
     @Order(4)
     void delete() {
         Subject delete = this.service.save(this.subject);
-        List<Subject> subjectList = this.service.findall();
+        List<Subject> subjectList = this.service.findAll();
         assertEquals(1,subjectList.size());
         System.out.println("Deleted");
         this.service.delete(delete);

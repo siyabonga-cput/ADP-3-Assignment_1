@@ -11,7 +11,5 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.StudentDetails.Transport;
 
 @Repository
-public interface ITransportRepository extends JpaRepository<Transport, String>
-{
-
+public interface ITransportRepository extends JpaRepository<Transport, String> {
 }

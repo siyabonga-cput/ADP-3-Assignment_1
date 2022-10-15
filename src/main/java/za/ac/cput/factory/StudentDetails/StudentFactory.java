@@ -6,6 +6,7 @@ Date: 7 August 2022
 
 package za.ac.cput.factory.StudentDetails;
 
+
 import za.ac.cput.domain.StudentDetails.Student;
 import za.ac.cput.util.Helper;
 
@@ -20,6 +21,7 @@ public class StudentFactory {
                                 String address,
                                 String importantHealthInfo,
                                 double stuAverage) {
+
 
         Helper.isEmptyOrNull("studentID");
         Helper.isEmptyOrNull("stuName");

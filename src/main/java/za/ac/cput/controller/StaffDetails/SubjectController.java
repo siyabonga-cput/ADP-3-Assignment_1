@@ -50,8 +50,7 @@ import java.util.List;
 
         @GetMapping("/all")
         public ResponseEntity <List<Subject>> findAll() {
-            List<Subject> parent = this.iSubjectService.findall();
+            List<Subject> parent = this.iSubjectService.findAll();
             return ResponseEntity.ok(parent);
         }
-
 }

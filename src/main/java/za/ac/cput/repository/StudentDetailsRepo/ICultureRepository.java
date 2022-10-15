@@ -10,9 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.StudentDetails.Culture;
 
-
 @Repository
 public interface ICultureRepository extends JpaRepository <Culture, String> {
-
 }
 

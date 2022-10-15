@@ -11,16 +11,20 @@ import za.ac.cput.domain.StudentDetails.Student;
 import za.ac.cput.util.Helper;
 
 public class CultureFactory {
-   public static Culture build (String Id, String cultureType, Student student) {
+   public static Culture build(String CultureId, String cultureType, Student student) {
 
         Helper.isEmptyOrNull("cultureId");
         Helper.isEmptyOrNull("cultureType");
         Helper.isEmptyOrNull("student");
 
-
-        Helper.CheckStringParm("cultureId", Id);
+        Helper.CheckStringParm("cultureId", CultureId);
         Helper.CheckStringParm("cultureType", cultureType);
 
-        return new Culture.Builder().cultureId(Id).cultureType(cultureType).student(student).build();
+        return new Culture
+                .Builder()
+                .setCultureId(CultureId)
+                .setCultureType(cultureType)
+                .setStudent(student)
+                .build();
     }
 }

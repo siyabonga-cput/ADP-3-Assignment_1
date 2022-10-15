@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/abc-school-management/subjectDepartment")
+@RequestMapping("/abc-school-management/transport")
 @Slf4j
 public class TransportController
 {

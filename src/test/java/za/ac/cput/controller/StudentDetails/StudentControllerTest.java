@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import za.ac.cput.domain.StudentDetails.Student;
 import za.ac.cput.factory.StudentDetails.StudentFactory;
 
@@ -17,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest (webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudentControllerTest {
+    public static String SECURITY_USERNAME= "user";
+    public static String SECURITY_PASSWORD= "password";
     @LocalServerPort
     private int port;
     @Autowired
@@ -47,13 +48,26 @@ class StudentControllerTest {
     void findAll() {
         String url = baseUrl + "/all";
         System.out.println(url);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<Student[]> entity = new HttpEntity<>(null,headers);
         ResponseEntity<Student[]> response =
-                this.restTemplate.getForEntity(url, Student[].class);
-        System.out.println(Arrays.asList(response.getBody()));
+                restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                        .exchange(url, HttpMethod.GET,entity, Student[].class);
+        System.out.println("Show all: ");
+        System.out.println(response);
+        System.out.println(response.getBody());
         assertAll(
                 () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
-                () -> assertTrue(response.getBody().length == 0 )
+                () -> assertTrue(response.getBody().length == 1)
         );
+//        System.out.println(url);
+//        ResponseEntity<Student[]> response =
+//                this.restTemplate.getForEntity(url, Student[].class);
+//        System.out.println(Arrays.asList(response.getBody()));
+//        assertAll(
+//                () -> assertEquals(HttpStatus.OK, response.getStatusCode()),
+//                () -> assertTrue(response.getBody().length == 0 )
+//        );
     }
 
     @Test
@@ -89,5 +103,4 @@ class StudentControllerTest {
         this.restTemplate.delete(url);
         System.out.println("Deleted Record! ");
     }
-
 }

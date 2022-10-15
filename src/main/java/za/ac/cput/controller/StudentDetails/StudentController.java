@@ -2,10 +2,8 @@ package za.ac.cput.controller.StudentDetails;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.domain.StudentDetails.Student;
 import za.ac.cput.services.Interface.StudentDetails.IStudent;
 
