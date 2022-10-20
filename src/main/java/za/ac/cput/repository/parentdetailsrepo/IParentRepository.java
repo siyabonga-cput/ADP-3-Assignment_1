@@ -1,0 +1,15 @@
+/* IParentRepository.java
+Repository for IParentRepository
+Author: Marvin Peter Hope (219445842)
+Date: 2 April 2022
+*/
+
+package za.ac.cput.repository.parentdetailsrepo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import za.ac.cput.domain.parentdetails.Parent;
+
+@Repository
+public interface IParentRepository extends JpaRepository<Parent, String> {
+}
